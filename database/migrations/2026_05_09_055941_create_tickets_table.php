@@ -16,6 +16,7 @@ return new class extends Migration
 
     $table->foreignId('exhibition_id')->constrained()->onDelete('cascade');
 
+    $table->enum('type', ['vip', 'regular', 'student']);
     $table->decimal('price', 10, 2);
     $table->integer('stock');
 
