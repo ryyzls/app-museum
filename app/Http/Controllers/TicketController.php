@@ -11,14 +11,14 @@ class TicketController extends Controller
     {
         $tickets = Ticket::with('exhibition')->get();
 
-        return response()->json($tickets);
+        return view('tickets.index');
     }
 
     public function show($id)
     {
         $ticket = Ticket::with('exhibition')->findOrFail($id);
 
-        return response()->json($ticket);
+         return view('tickets.index');
     }
 
     public function store(Request $request)
