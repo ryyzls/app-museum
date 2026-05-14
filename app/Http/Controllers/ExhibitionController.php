@@ -11,15 +11,23 @@ class ExhibitionController extends Controller
     {
         $exhibitions = Exhibition::with(['museum', 'artworks'])->get();
 
-        return response()->json($exhibitions);
+        return view(
+            'exhibitions.index',
+            compact('exhibitions')
+        );
     }
 
     public function show($id)
     {
-        $exhibition = Exhibition::with(['museum', 'artworks'])
-            ->findOrFail($id);
+        $exhibition = Exhibition::with([
+            'museum',
+            'artworks'
+        ])->findOrFail($id);
 
-        return response()->json($exhibition);
+        return view(
+            'exhibitions.show',
+            compact('exhibition')
+        );
     }
 
     public function store(Request $request)
