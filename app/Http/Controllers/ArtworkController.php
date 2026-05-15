@@ -10,19 +10,97 @@ use Illuminate\Http\Request;
 
 class ArtworkController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $artworks = Artwork::with([
-            'artist',
-            'category',
-            'museum'
-        ])
-            ->latest()
-            ->paginate(24);
+        // Base query - hanya artwork berkualitas
+        $query = Artwork::with(['artist', 'category', 'museum'])
 
-        return view('artworks.index', compact('artworks'));
+            ->whereNotNull('image_url')
+
+            ->whereNotNull('description')
+
+            ->whereRaw('TRIM(description) != ""')
+
+            ->whereRaw('LENGTH(description) > 15')
+
+            ->where('description', '!=', 'Imported from API')
+            ->where('description', '!=', 'No description available')
+            ->where('description', '!=', 'Description unavailable')
+            ->where('description', '!=', 'Unknown')
+
+            ->whereHas('artist')
+            ->whereHas('category');
+
+        // Search
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhereHas('artist', function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%");
+                    });
+            });
+        }
+
+        // Filter by Category
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        // Filter by Artist
+        if ($request->filled('artist')) {
+            $query->where('artist_id', $request->artist);
+        }
+
+        // Sort
+        $sort = $request->get('sort', 'newest');
+        switch ($sort) {
+            case 'oldest':
+                $query->oldest();
+                break;
+            case 'a-z':
+                $query->orderBy('title', 'asc');
+                break;
+            case 'z-a':
+                $query->orderBy('title', 'desc');
+                break;
+            default: // newest
+                $query->latest();
+        }
+
+        $artworks = $query->paginate(12)->withQueryString();
+
+        // Get categories & artists yang ONLY punya artwork berkualitas
+        $categories = Category::whereHas('artworks', function ($q) {
+
+            $q->whereNotNull('image_url')
+
+                ->whereNotNull('description')
+
+                ->whereRaw('TRIM(description) != ""')
+
+                ->whereRaw('LENGTH(TRIM(description)) > 15');
+
+        })
+            ->orderBy('name')
+            ->get();
+
+        $artists = Artist::whereHas('artworks', function ($q) {
+
+            $q->whereNotNull('image_url')
+
+                ->whereNotNull('description')
+
+                ->whereRaw('TRIM(description) != ""')
+
+                ->whereRaw('LENGTH(TRIM(description)) > 15');
+
+        })
+            ->orderBy('name')
+            ->get();
+
+        return view('artworks.index', compact('artworks', 'categories', 'artists'));
     }
-
     public function show($id)
     {
         $artwork = Artwork::with(['artist', 'category', 'museum'])

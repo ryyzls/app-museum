@@ -57,6 +57,101 @@
 
         </div>
 
+        {{-- Search & Filter Section --}}
+        <div class="mb-16 border-t border-b border-gray-200 py-8">
+
+            <form method="GET" action="/artworks" class="space-y-6">
+
+                {{-- Search Bar --}}
+                <div class="relative">
+                    <input type="text" name="search" value="{{ request('search') }}"
+                        placeholder="Search by artwork title or artist name..."
+                        class="w-full px-6 py-4 border border-gray-300 focus:border-black focus:outline-none uppercase tracking-[0.15em] text-sm">
+                    @if(request('search'))
+                        <a href="/artworks" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black">
+                            ✕
+                        </a>
+                    @endif
+                </div>
+
+                {{-- Filters Row --}}
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+                    {{-- Category Filter --}}
+                    <select name="category"
+                        class="px-4 py-3 border border-gray-300 focus:border-black focus:outline-none uppercase tracking-[0.15em] text-sm bg-white"
+                        onchange="this.form.submit()">
+                        <option value="">All Categories</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    {{-- Artist Filter --}}
+                    <select name="artist"
+                        class="px-4 py-3 border border-gray-300 focus:border-black focus:outline-none uppercase tracking-[0.15em] text-sm bg-white"
+                        onchange="this.form.submit()">
+                        <option value="">All Artists</option>
+                        @foreach($artists as $artist)
+                            <option value="{{ $artist->id }}" {{ request('artist') == $artist->id ? 'selected' : '' }}>
+                                {{ $artist->name }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    {{-- Sort --}}
+                    <select name="sort"
+                        class="px-4 py-3 border border-gray-300 focus:border-black focus:outline-none uppercase tracking-[0.15em] text-sm bg-white"
+                        onchange="this.form.submit()">
+                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest First</option>
+                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Oldest First</option>
+                        <option value="a-z" {{ request('sort') == 'a-z' ? 'selected' : '' }}>A - Z</option>
+                        <option value="z-a" {{ request('sort') == 'z-a' ? 'selected' : '' }}>Z - A</option>
+                    </select>
+
+                    {{-- Apply Button --}}
+                    <button type="submit"
+                        class="border border-black px-6 py-3 uppercase tracking-[0.2em] text-sm hover:bg-black hover:text-white transition duration-300">
+                        Apply Filters
+                    </button>
+
+                </div>
+
+                {{-- Active Filters Display --}}
+                @if(request()->hasAny(['search', 'category', 'artist', 'sort']))
+                    <div class="flex items-center gap-4 text-sm">
+                        <span class="text-gray-500 uppercase tracking-[0.2em]">Active:</span>
+
+                        @if(request('search'))
+                            <span class="px-3 py-1 bg-gray-100 border border-gray-300">
+                                Search: "{{ request('search') }}"
+                            </span>
+                        @endif
+
+                        @if(request('category'))
+                            <span class="px-3 py-1 bg-gray-100 border border-gray-300">
+                                {{ $categories->find(request('category'))->name }}
+                            </span>
+                        @endif
+
+                        @if(request('artist'))
+                            <span class="px-3 py-1 bg-gray-100 border border-gray-300">
+                                {{ $artists->find(request('artist'))->name }}
+                            </span>
+                        @endif
+
+                        <a href="/artworks" class="text-gray-500 hover:text-black uppercase tracking-[0.2em] ml-auto">
+                            Clear All
+                        </a>
+                    </div>
+                @endif
+
+            </form>
+
+        </div>
+
         {{-- Grid --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
 
