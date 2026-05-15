@@ -4,32 +4,37 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+return new class extends Migration {
     public function up(): void
     {
-       Schema::create('transactions', function (Blueprint $table) {
-    $table->id();
+        Schema::create('transactions', function (Blueprint $table) {
 
-    $table->foreignId('user_id')->constrained()->onDelete('cascade');
-    $table->foreignId('ticket_id')->constrained()->onDelete('cascade');
+            $table->id();
 
-    $table->integer('quantity');
-    $table->decimal('total_price', 10, 2);
+            $table->foreignId('ticket_id')
+                ->constrained()
+                ->cascadeOnDelete();
 
-    $table->enum('status', ['pending', 'paid', 'cancelled'])
-          ->default('pending');
+            $table->integer('quantity');
 
-    $table->timestamps();
+            $table->decimal('total_price', 12, 2);
+
+            $table->string('payment_method')->nullable();
+
+            $table->enum('payment_status', [
+                'Pending',
+                'Paid',
+                'Cancelled'
+            ])->default('Pending');
+
+            $table->string('transaction_code')
+                ->unique();
+
+            $table->timestamps();
+
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('transactions');
