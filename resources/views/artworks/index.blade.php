@@ -66,12 +66,12 @@
                 @foreach($artworks as $artwork)
 
                     <div class="group relative overflow-hidden transition-all duration-500 hover:-translate-y-2">
-                        
+
                         {{-- Image --}}
                         <div class="relative overflow-hidden bg-gray-200">
 
-                            <img src="{{ $artwork->image }}" onerror="this.src='/images/artworks/fallback.jpg'"
-                                class="h-[500px] w-full object-cover transition duration-500">
+                            <img src="{{ $artwork->image_url }}" onerror="this.src='{{ asset('images/artworks/fallback.jpg') }}'"
+                                class="h-[500px] w-full object-cover transition duration-500" alt="{{ $artwork->title }}">
 
                             <div
                                 class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-70 transition duration-500">
@@ -154,6 +154,10 @@
 
             @endif
 
+        </div>
+
+        <div class="mt-20">
+            {{ $artworks->links() }}
         </div>
 
     </section>

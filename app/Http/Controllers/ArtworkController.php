@@ -12,7 +12,13 @@ class ArtworkController extends Controller
 {
     public function index()
     {
-        $artworks = Artwork::with(['artist', 'category', 'museum'])->get();
+        $artworks = Artwork::with([
+            'artist',
+            'category',
+            'museum'
+        ])
+            ->latest()
+            ->paginate(24);
 
         return view('artworks.index', compact('artworks'));
     }

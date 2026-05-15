@@ -8,7 +8,8 @@
     <section class="relative h-screen overflow-hidden">
 
         {{-- Artwork Image --}}
-        <img src="{{ $artwork->image }}" onerror="this.src='/images/artworks/fallback.jpg'" class="absolute inset-0 w-full h-full object-cover">
+        <img src="{{ $artwork->image_url }}" onerror="this.src='{{ asset('images/artworks/fallback.jpg') }}'"
+            class="absolute inset-0 w-full h-full object-cover" alt="{{ $artwork->title }}">
 
         {{-- Overlay --}}
         <div class="absolute inset-0 bg-black/55"></div>

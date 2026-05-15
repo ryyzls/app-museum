@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             MuseumSeeder::class,
             ArtistSeeder::class,
+            LouvreSeeder::class
         ]);
     }
 }
