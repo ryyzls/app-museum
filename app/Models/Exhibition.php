@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Exhibition extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'title',
+        'subtitle',
+        'description',
+        'banner_image',
         'start_date',
         'end_date',
+        'status',
         'museum_id',
     ];
 
@@ -20,6 +21,12 @@ class Exhibition extends Model
         'start_date' => 'date',
         'end_date' => 'date',
     ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
 
     public function museum()
     {

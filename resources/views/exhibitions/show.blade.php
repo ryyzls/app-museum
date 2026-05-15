@@ -4,161 +4,157 @@
 
 @section('content')
 
-<section class="max-w-7xl mx-auto px-8 py-28">
+    <section class="max-w-7xl mx-auto px-8 py-28">
 
-    {{-- Header --}}
-    <div class="mb-20">
-
-        <p class="uppercase tracking-[0.3em] text-sm text-gray-500 mb-4">
-
-            Exhibition
-
-        </p>
-
-        <h1 class="museum-title text-6xl md:text-8xl font-light mb-8">
-
-            {{ $exhibition->title }}
-
-        </h1>
-
-        <div class="flex flex-wrap gap-10 text-gray-600">
-
-            <div>
-
-                <p class="uppercase text-xs tracking-[0.2em] mb-2">
-
-                    Date
-
-                </p>
-
-                <p>
-
-                    {{ $exhibition->start_date->format('d M Y') }}
-                    —
-                    {{ $exhibition->end_date->format('d M Y') }}
-
-                </p>
-
-            </div>
-
-            <div>
-
-                <p class="uppercase text-xs tracking-[0.2em] mb-2">
-
-                    Museum
-
-                </p>
-
-                <p>
-
-                    {{ $exhibition->museum->name }}
-
-                </p>
-
-            </div>
-
-            <div>
-
-                <p class="uppercase text-xs tracking-[0.2em] mb-2">
-
-                    Artworks
-
-                </p>
-
-                <p>
-
-                    {{ $exhibition->artworks->count() }}
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    {{-- Artworks --}}
-    <div>
-
-        <div class="mb-12">
+        {{-- Header --}}
+        <div class="mb-20">
 
             <p class="uppercase tracking-[0.3em] text-sm text-gray-500 mb-4">
 
-                Featuring
+                Exhibition
 
             </p>
 
-            <h2 class="museum-title text-5xl font-light">
+            <h1 class="museum-title text-6xl md:text-8xl font-light mb-8">
 
-                Artworks Collection
+                {{ $exhibition->title }}
 
-            </h2>
+            </h1>
 
-        </div>
+            <div class="flex flex-wrap gap-10 text-gray-600">
 
-        @if($exhibition->artworks->count())
+                <div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <p class="uppercase text-xs tracking-[0.2em] mb-2">
 
-            @foreach($exhibition->artworks as $artwork)
+                        Date
 
-            <a href="/artworks/{{ $artwork->id }}"
-                class="group">
+                    </p>
 
-                <div class="overflow-hidden">
+                    <p>
 
-                    <img
-                        src="{{ $artwork->image }}"
-                        onerror="this.src='/images/fallback.jpg'"
-                        class="h-[400px] w-full object-cover transition duration-500"
-                    >
-
-                </div>
-
-                <div class="pt-6">
-
-                    <h3 class="museum-title text-3xl">
-
-                        {{ $artwork->title }}
-
-                    </h3>
-
-                    <p class="mt-2 text-gray-500">
-
-                        {{ $artwork->artist->name }}
+                        {{ $exhibition->start_date->format('d M Y') }}
+                        —
+                        {{ $exhibition->end_date->format('d M Y') }}
 
                     </p>
 
                 </div>
 
-            </a>
+                <div>
 
-            @endforeach
+                    <p class="uppercase text-xs tracking-[0.2em] mb-2">
+
+                        Museum
+
+                    </p>
+
+                    <p>
+
+                        {{ $exhibition->museum->name }}
+
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <p class="uppercase text-xs tracking-[0.2em] mb-2">
+
+                        Artworks
+
+                    </p>
+
+                    <p>
+
+                        {{ $exhibition->artworks->count() }}
+
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
-        @else
+        {{-- Artworks --}}
+        <div>
 
-        <div class="text-center py-20">
+            <div class="mb-12">
 
-            <h2 class="museum-title text-4xl mb-4">
+                <p class="uppercase tracking-[0.3em] text-sm text-gray-500 mb-4">
 
-                No Artworks Connected
+                    Featuring
 
-            </h2>
+                </p>
 
-            <p class="text-gray-500">
+                <h2 class="museum-title text-5xl font-light">
 
-                Exhibition content will appear here later.
+                    Artworks Collection
 
-            </p>
+                </h2>
+
+            </div>
+
+            @if($exhibition->artworks->count())
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                    @foreach($exhibition->artworks as $artwork)
+
+                        <a href="/artworks/{{ $artwork->id }}" class="group">
+
+                            <div class="overflow-hidden">
+
+                                <img src="{{ $artwork->image_url }}" onerror="this.src='/images/fallback.jpg'"
+                                    class="h-[400px] w-full object-cover transition duration-500">
+
+                            </div>
+
+                            <div class="pt-6">
+
+                                <h3 class="museum-title text-3xl">
+
+                                    {{ $artwork->title }}
+
+                                </h3>
+
+                                <p class="mt-2 text-gray-500">
+
+                                    {{ $artwork->artist->name }}
+
+                                </p>
+
+                            </div>
+
+                        </a>
+
+                    @endforeach
+
+                </div>
+
+            @else
+
+                <div class="text-center py-20">
+
+                    <h2 class="museum-title text-4xl mb-4">
+
+                        No Artworks Connected
+
+                    </h2>
+
+                    <p class="text-gray-500">
+
+                        Exhibition content will appear here later.
+
+                    </p>
+
+                </div>
+
+            @endif
 
         </div>
 
-        @endif
-
-    </div>
-
-</section>
+    </section>
 
 @endsection

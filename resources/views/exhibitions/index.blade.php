@@ -1,86 +1,134 @@
+```php
 @extends('layouts.app')
 
 @section('title', 'Exhibitions')
 
 @section('content')
 
-    <section class="max-w-7xl mx-auto px-8 py-24">
+    <section class="min-h-screen bg-white">
 
-        <div class="mb-20">
+        {{-- Hero --}}
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-24 pb-20">
 
-            <p class="uppercase tracking-[0.3em] text-sm text-gray-500 mb-4">
+            <p class="uppercase tracking-[0.35em] text-sm text-gray-500 mb-5">
 
-                Current
+                Museum Program
 
             </p>
 
-            <h1 class="museum-title text-6xl font-light">
+            <h1 class="museum-title text-5xl md:text-7xl lg:text-8xl font-light leading-none">
 
                 Exhibitions
 
             </h1>
 
+            <p class="mt-8 max-w-2xl text-gray-600 text-lg leading-relaxed">
+
+                Explore curated exhibitions featuring timeless masterpieces,
+                cultural narratives, and historical collections from the museum ecosystem.
+
+            </p>
+
         </div>
 
-        <div class="space-y-16">
+        {{-- Exhibition Grid --}}
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 pb-28">
 
             @if($exhibitions->count())
 
-                @foreach($exhibitions as $exhibition)
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-                    <div class="border-b border-gray-200 pb-12">
+                    @foreach($exhibitions as $exhibition)
 
-                        <div class="flex justify-between items-center">
+                        <a href="/exhibitions/{{ $exhibition->id }}" class="group block">
 
-                            <div>
+                            {{-- Banner --}}
+                            <div class="relative overflow-hidden rounded-3xl">
 
-                                <h2 class="museum-title text-4xl mb-4">
+                                <img src="{{ $exhibition->banner_image }}" alt="{{ $exhibition->title }}"
+                                    class="h-[500px] w-full object-cover transition duration-700 group-hover:scale-105">
 
-                                    {{ $exhibition->title }}
+                                {{-- Overlay --}}
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-                                </h2>
+                                {{-- Status --}}
+                                <div class="absolute top-6 left-6">
 
-                                <p class="text-gray-500 mb-2">
+                                    <span
+                                        class="px-4 py-2 rounded-full bg-white/90 backdrop-blur text-xs uppercase tracking-[0.2em]">
 
-                                    {{ $exhibition->start_date->format('d M Y') }}
-                                    —
-                                    {{ $exhibition->end_date->format('d M Y') }}
+                                        {{ $exhibition->status }}
 
-                                </p>
+                                    </span>
 
-                                <p class="text-gray-600">
+                                </div>
 
-                                    {{ $exhibition->museum->name }}
+                                {{-- Content --}}
+                                <div class="absolute bottom-0 p-8 text-white">
 
-                                </p>
+                                    <p class="uppercase tracking-[0.25em] text-xs mb-4 text-white/70">
 
-                                <p class="mt-4 text-sm uppercase tracking-[0.2em]">
+                                        {{ $exhibition->museum->name }}
 
-                                    {{ $exhibition->artworks->count() }}
-                                    artworks featured
+                                    </p>
 
-                                </p>
+                                    <h2 class="museum-title text-4xl md:text-5xl leading-tight mb-4">
+
+                                        {{ $exhibition->title }}
+
+                                    </h2>
+
+                                    @if($exhibition->subtitle)
+
+                                        <p class="text-white/80 text-lg mb-5">
+
+                                            {{ $exhibition->subtitle }}
+
+                                        </p>
+
+                                    @endif
+
+                                    <div class="flex flex-wrap gap-6 text-sm text-white/70">
+
+                                        <span>
+
+                                            {{ $exhibition->start_date->format('d M Y') }}
+                                            —
+                                            {{ $exhibition->end_date->format('d M Y') }}
+
+                                        </span>
+
+                                        <span>
+
+                                            {{ $exhibition->artworks->count() }}
+                                            artworks
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
 
                             </div>
 
-                            <a href="/exhibitions/{{ $exhibition->id }}"
-                                class="uppercase tracking-[0.2em] border-b border-black pb-2">
+                        </a>
 
-                                View Exhibition
+                    @endforeach
 
-                            </a>
+                </div>
 
-                        </div>
+                {{-- Pagination --}}
+                <div class="mt-20">
 
-                    </div>
+                    {{ $exhibitions->links() }}
 
-                @endforeach
+                </div>
 
             @else
 
-                <div class="text-center py-32">
+                <div class="text-center py-40">
 
-                    <p class="uppercase tracking-[0.4em] text-sm text-gray-400 mb-5">
+                    <p class="uppercase tracking-[0.35em] text-sm text-gray-400 mb-6">
 
                         Exhibition Space
 
@@ -92,7 +140,7 @@
 
                     </h2>
 
-                    <p class="text-gray-500 max-w-xl mx-auto">
+                    <p class="text-gray-500 max-w-2xl mx-auto">
 
                         Exhibition content will appear here once connected
                         to the museum ecosystem.
@@ -108,3 +156,4 @@
     </section>
 
 @endsection
+```
