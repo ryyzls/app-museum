@@ -24,9 +24,9 @@ return new class extends Migration {
             $table->date('end_date');
 
             $table->enum('status', [
-                'Upcoming',
+                'Past',
                 'Current',
-                'Finished'
+                'Upcoming'
             ])->default('Upcoming');
 
             $table->foreignId('museum_id')
