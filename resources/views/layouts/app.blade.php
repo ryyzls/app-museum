@@ -9,6 +9,8 @@
 
     @vite('resources/css/app.css')
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     {{-- Google Font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
@@ -66,6 +68,29 @@
         </script>
 
     @endif
+
+    @if(session('success'))
+
+        <script>
+
+            Swal.fire({
+
+                icon: 'success',
+
+                title: 'Reservation Confirmed',
+
+                text: '{{ session('success') }}',
+
+                confirmButtonColor: '#000',
+
+                background: '#ffffff',
+
+            });
+
+        </script>
+
+    @endif
+
 
 
 </body>

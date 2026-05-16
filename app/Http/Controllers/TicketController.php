@@ -27,7 +27,7 @@ class TicketController extends Controller
             'exhibition_id' => 'required|exists:exhibitions,id',
             'type' => 'required|in:vip,regular,student',
             'price' => 'required|numeric',
-            'stock' => 'required|integer',
+            'available_quota' => 'required|integer',
         ]);
 
         $ticket = Ticket::create($validated);
@@ -46,7 +46,7 @@ class TicketController extends Controller
             'exhibition_id' => 'sometimes|exists:exhibitions,id',
             'type' => 'sometimes|in:vip,regular,student',
             'price' => 'sometimes|numeric',
-            'stock' => 'sometimes|integer',
+            'available_quota' => 'sometimes|integer',
         ]);
 
         $ticket->update($validated);

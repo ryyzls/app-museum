@@ -288,18 +288,18 @@
                                     </span>
 
                                     <span class="
-                                                px-3 py-1 rounded-full text-xs uppercase tracking-[0.15em]
+                                                            px-3 py-1 rounded-full text-xs uppercase tracking-[0.15em]
 
-                                                @if($ticket->status === 'Available')
-                                                    bg-green-100 text-green-700
+                                                            @if($ticket->status === 'Available')
+                                                                bg-green-100 text-green-700
 
-                                                @elseif($ticket->status === 'Sold Out')
-                                                    bg-red-100 text-red-700
+                                                            @elseif($ticket->status === 'Sold Out')
+                                                                bg-red-100 text-red-700
 
-                                                @else
-                                                    bg-gray-200 text-gray-700
-                                                @endif
-                                            ">
+                                                            @else
+                                                                bg-gray-200 text-gray-700
+                                                            @endif
+                                                        ">
 
                                         {{ $ticket->status }}
 
@@ -312,12 +312,12 @@
                             {{-- CTA --}}
                             @if($ticket->status === 'Available')
 
-                                <button
-                                    class="w-full py-4 rounded-full bg-black text-white uppercase tracking-[0.2em] text-sm hover:bg-gray-900 hover:scale-[1.02] transition">
+                                <a href="{{ route('tickets.checkout', $ticket->id) }}"
+                                    class="block w-full py-4 rounded-full bg-black text-white uppercase tracking-[0.2em] text-sm text-center hover:bg-gray-900 hover:scale-[1.02] transition">
 
                                     Reserve Ticket
 
-                                </button>
+                                </a>
 
                             @elseif($ticket->status === 'Sold Out')
 

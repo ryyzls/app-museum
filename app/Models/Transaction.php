@@ -10,11 +10,12 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'ticket_id',
         'quantity',
         'total_price',
-        'status',
+        'payment_method',
+        'payment_status',
+        'transaction_code',
     ];
 
     protected $casts = [
@@ -30,4 +31,6 @@ class Transaction extends Model
     {
         return $this->belongsTo(Ticket::class);
     }
+
 }
+

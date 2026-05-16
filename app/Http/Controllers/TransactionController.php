@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class TransactionController extends Controller
 {
@@ -23,6 +25,164 @@ class TransactionController extends Controller
         return response()->json($transaction);
     }
 
+    public function checkout(Ticket $ticket)
+    {
+        $ticket->load('exhibition');
+
+        return view('transactions.checkout', compact('ticket'));
+    }
+
+
+    public function reserve(Request $request, Ticket $ticket)
+    {
+        /*
+        |--------------------------------------------------------------------------
+        | VALIDATION
+        |--------------------------------------------------------------------------
+        */
+
+        $validated = $request->validate([
+
+            'quantity' => [
+                'required',
+                'integer',
+                'min:1',
+                'max:' . $ticket->available_quota,
+            ],
+
+            'payment_method' => [
+                'required',
+                'string',
+            ],
+
+        ]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | TOTAL PRICE
+        |--------------------------------------------------------------------------
+        */
+
+        $totalPrice = $ticket->price * $validated['quantity'];
+
+        /*
+        |--------------------------------------------------------------------------
+        | GENERATE TRANSACTION CODE
+        |--------------------------------------------------------------------------
+        */
+
+        $transactionCode =
+            'ALP-' .
+            strtoupper(uniqid());
+
+        /*
+        |--------------------------------------------------------------------------
+        | CREATE TRANSACTION
+        |--------------------------------------------------------------------------
+        */
+
+        $transaction = Transaction::create([
+
+            'ticket_id' => $ticket->id,
+
+            'quantity' => $validated['quantity'],
+
+            'total_price' => $totalPrice,
+
+            'payment_method' => $validated['payment_method'],
+
+            'payment_status' => 'Pending',
+
+            'transaction_code' => $transactionCode,
+
+        ]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | REDUCE QUOTA
+        |--------------------------------------------------------------------------
+        */
+
+        $ticket->available_quota -= $validated['quantity'];
+
+        /*
+        |--------------------------------------------------------------------------
+        | AUTO STATUS
+        |--------------------------------------------------------------------------
+        */
+
+        if ($ticket->available_quota <= 0) {
+
+            $ticket->status = 'Sold Out';
+
+        }
+
+        $ticket->save();
+
+        /*
+        |--------------------------------------------------------------------------
+        | REDIRECT
+        |--------------------------------------------------------------------------
+        */
+
+        return redirect()
+            ->route('transactions.success', $transaction->id)
+            ->with('success', 'Your reservation has been successfully created.');
+    }
+
+
+    public function success(Transaction $transaction)
+    {
+        $transaction->load('ticket.exhibition');
+
+        return view('transactions.success', compact('transaction'));
+    }
+
+
+    public function downloadTicket(Transaction $transaction)
+    {
+        $transaction->load('ticket.exhibition');
+
+        /*
+        |--------------------------------------------------------------------------
+        | GENERATE QR
+        |--------------------------------------------------------------------------
+        */
+
+        $qrCode = base64_encode(
+
+            QrCode::format('svg')
+                ->size(200)
+                ->generate($transaction->transaction_code)
+
+        );
+
+        /*
+        |--------------------------------------------------------------------------
+        | PDF
+        |--------------------------------------------------------------------------
+        */
+
+        $pdf = Pdf::loadView(
+            'transactions.ticket-pdf',
+            compact('transaction', 'qrCode')
+        );
+
+        return $pdf->download(
+            'ALPHASEUM-TICKET-' .
+            $transaction->transaction_code .
+            '.pdf'
+        );
+    }
+
+
+
+
+
+
+
+
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -33,7 +193,7 @@ class TransactionController extends Controller
 
         $ticket = Ticket::findOrFail($validated['ticket_id']);
 
-        if ($ticket->stock < $validated['quantity']) {
+        if ($ticket->available_quota < $validated['quantity']) {
             return response()->json([
                 'message' => 'Ticket stock is not enough'
             ], 400);
