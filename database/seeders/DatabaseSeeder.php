@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             MuseumSeeder::class,
             ArtistSeeder::class,
             LouvreSeeder::class,
-            ExhibitionSeeder::class
+            ExhibitionSeeder::class,
+            TicketSeeder::class
         ]);
     }
 }

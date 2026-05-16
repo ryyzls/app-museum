@@ -133,7 +133,7 @@ class ExhibitionSeeder extends Seeder
                     'Through roughly a hundred assembled pieces, the exhibition highlights the remarkable legacy of Martin Schongauer, one of the major artistic figures of the late Middle Ages.',
 
                 'banner_image' =>
-                    'https://api-www.louvre.fr/sites/default/files/2025-04/martin-schongauer.jpg',
+                    'https://api-www.louvre.fr/sites/default/files/styles/w1073_h1431_c1/public/2025-12/WEB_IVR44_20256800786NUCA-crop.jpg',
 
                 'start_date' => '2026-04-08',
 
@@ -152,7 +152,7 @@ class ExhibitionSeeder extends Seeder
                     'Two unrivalled masters of Western sculpture engage in a dialogue across the centuries: Michelangelo and Rodin.',
 
                 'banner_image' =>
-                    'https://api-www.louvre.fr/sites/default/files/2025-04/michelangelo-rodin.jpg',
+                    'https://api-www.louvre.fr/sites/default/files/styles/w1000_h429_c1/public/2022-03/michel-ange-dit-michelangelo-buonarroti-esclave-rebelle-et-esclave-mourant-avant-restauration.jpg',
 
                 'start_date' => '2026-04-15',
 
@@ -189,7 +189,7 @@ class ExhibitionSeeder extends Seeder
                     'A major retrospective celebrating the artistic and political journey of Jacques-Louis David.',
 
                 'banner_image' =>
-                    'https://api-www.louvre.fr/sites/default/files/2025-04/jacques-louis-david.jpg',
+                    'https://api-www.louvre.fr/sites/default/files/styles/w1920_h823_c1/public/2025-07/l-enlevement-des-sabines-jacques-louis-david.jpg',
 
                 'start_date' => '2025-09-01',
 
@@ -208,7 +208,7 @@ class ExhibitionSeeder extends Seeder
                     'An immersive exploration of the preparatory drawings behind one of the greatest masterpieces of Western painting.',
 
                 'banner_image' =>
-                    'https://api-www.louvre.fr/sites/default/files/2025-04/carracci-drawings.jpg',
+                    'https://api-www.louvre.fr/sites/default/files/styles/w1920_h823_c1/public/2025-10/etude-de-nu-d-apres-le-modele-vivant-posant-a-l-imitation-du-torse-du-belvedere-reutilisee-pour-l-atlante-a-droite-de-jupiter-et-junon.png',
 
                 'start_date' => '2025-11-01',
 

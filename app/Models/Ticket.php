@@ -2,23 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'exhibition_id',
-        'type',
+        'ticket_type',
         'price',
-        'stock',
+        'quota',
+        'available_quota',
+        'visit_date',
+        'status',
     ];
 
     protected $casts = [
-        'price' => 'decimal:2',
+        'visit_date' => 'date',
     ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
 
     public function exhibition()
     {
