@@ -7,18 +7,62 @@ use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
-    public function index()
-    {
-        $tickets = Ticket::with('exhibition')->get();
 
-        return view('tickets.index');
+
+    public function index(Request $request)
+    {
+        $query = Ticket::with('exhibition');
+
+        /*
+        |--------------------------------------------------------------------------
+        | FILTER STATUS
+        |--------------------------------------------------------------------------
+        */
+
+        if ($request->filled('status')) {
+
+            $query->where('status', $request->status);
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | FILTER TICKET TYPE
+        |--------------------------------------------------------------------------
+        */
+
+        if ($request->filled('type')) {
+
+            $query->where('ticket_type', $request->type);
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | SORT AVAILABLE FIRST
+        |--------------------------------------------------------------------------
+        */
+
+        $query->orderByRaw("
+        CASE
+            WHEN status = 'Available' THEN 1
+            WHEN status = 'Sold Out' THEN 2
+            ELSE 3
+        END
+    ");
+
+        $tickets = $query->latest()->get();
+
+        return view('tickets.index', compact('tickets'));
     }
+
+
+
+
 
     public function show($id)
     {
-        $ticket = Ticket::with('exhibition')->findOrFail($id);
-
-         return view('tickets.index');
+        return redirect()->route('tickets.checkout', $id);
     }
 
     public function store(Request $request)

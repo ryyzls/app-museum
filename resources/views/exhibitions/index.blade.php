@@ -28,10 +28,10 @@
 
                             {{-- Small Label --}}
                             <p class="uppercase tracking-[0.18em]
-                                          text-[11px] md:text-sm
-                                          text-white/80
-                                          font-medium
-                                          mb-4">
+                                                              text-[11px] md:text-sm
+                                                              text-white/80
+                                                              font-medium
+                                                              mb-4">
 
                                 Museum Program
 
@@ -39,11 +39,11 @@
 
                             {{-- Main Title --}}
                             <h1 class="museum-title
-                                           text-white
-                                           text-4xl md:text-5xl lg:text-6xl
-                                           font-light
-                                           leading-[0.95]
-                                           tracking-tight">
+                                                               text-white
+                                                               text-4xl md:text-5xl lg:text-6xl
+                                                               font-light
+                                                               leading-[0.95]
+                                                               tracking-tight">
 
                                 Exhibitions
 
@@ -51,9 +51,9 @@
 
                             {{-- Description --}}
                             <p class="mt-5 max-w-xl
-                                          text-white/75
-                                          text-base
-                                          leading-relaxed">
+                                                              text-white/75
+                                                              text-base
+                                                              leading-relaxed">
                                 Explore curated exhibitions featuring timeless masterpieces,
                                 cultural narratives, and historical collections from the museum ecosystem.
                             </p>
@@ -85,11 +85,12 @@
                                 {{-- Banner --}}
                                 <div class="relative overflow-hidden">
 
-                                    <img src="{{ $exhibition->banner_image }}" alt="{{ $exhibition->title }}" class="h-[320px] md:h-[380px] lg:h-[420px]
-                                                                   w-full
-                                                                   object-cover
-                                                                   transition duration-700 ease-out
-                                                                   group-hover:scale-[1.02]">
+
+                                    <img src="{{ str_starts_with($exhibition->banner_image, 'http')
+                        ? $exhibition->banner_image
+                        : asset($exhibition->banner_image) }}" alt="{{ $exhibition->title }}" class=" h-[320px]
+                                                    md:h-[380px] lg:h-[420px] w-full object-cover transition duration-700 ease-out
+                                                    group-hover:scale-[1.02]">
 
                                     {{-- Gradient Overlay --}}
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent"></div>
@@ -97,14 +98,15 @@
                                     {{-- Status --}}
                                     <div class="absolute top-6 left-6">
 
-                                        <span class="px-4 py-2
-                                                                         bg-white/90
-                                                                         backdrop-blur-sm
-                                                                         text-black
-                                                                         text-[10px]
-                                                                         uppercase
-                                                                         tracking-[0.2em]
-                                                                         font-medium">
+                                        <span
+                                            class="px-4 py-2
+                                                                                                                                     bg-white/90
+                                                                                                                                     backdrop-blur-sm
+                                                                                                                                     text-black
+                                                                                                                                     text-[10px]
+                                                                                                                                     uppercase
+                                                                                                                                     tracking-[0.2em]
+                                                                                                                                     font-medium">
 
                                             {{ $exhibition->status }}
 
@@ -116,22 +118,24 @@
                                     <div class="absolute bottom-0 left-0 right-0 p-8 lg:p-10 text-white">
 
                                         {{-- Museum --}}
-                                        <p class="uppercase
-                                                                      tracking-[0.25em]
-                                                                      text-[10px]
-                                                                      text-white/65
-                                                                      mb-4">
+                                        <p
+                                            class="uppercase
+                                                                                                                                  tracking-[0.25em]
+                                                                                                                                  text-[10px]
+                                                                                                                                  text-white/65
+                                                                                                                                  mb-4">
 
                                             {{ $exhibition->museum->name }}
 
                                         </p>
 
                                         {{-- Title --}}
-                                        <h2 class="museum-title
-                                                                       text-3xl md:text-4xl
-                                                                       leading-tight
-                                                                       tracking-tight
-                                                                       mb-4">
+                                        <h2
+                                            class="museum-title
+                                                                                                                                   text-3xl md:text-4xl
+                                                                                                                                   leading-tight
+                                                                                                                                   tracking-tight
+                                                                                                                                   mb-4">
 
                                             {{ $exhibition->title }}
 
@@ -140,11 +144,12 @@
                                         {{-- Subtitle --}}
                                         @if($exhibition->subtitle)
 
-                                            <p class="text-white/75
-                                                                                  text-base
-                                                                                  leading-relaxed
-                                                                                  mb-6
-                                                                                  max-w-xl">
+                                            <p
+                                                class="text-white/75
+                                                                                                                                                                  text-base
+                                                                                                                                                                  leading-relaxed
+                                                                                                                                                                  mb-6
+                                                                                                                                                                  max-w-xl">
 
                                                 {{ $exhibition->subtitle }}
 
@@ -197,29 +202,29 @@
                 <div class="text-center py-40">
 
                     <p class="uppercase
-                                          tracking-[0.35em]
-                                          text-xs
-                                          text-gray-400
-                                          mb-6">
+                                                                                  tracking-[0.35em]
+                                                                                  text-xs
+                                                                                  text-gray-400
+                                                                                  mb-6">
 
                         Exhibition Space
 
                     </p>
 
                     <h2 class="museum-title
-                                           text-5xl
-                                           font-light
-                                           mb-6
-                                           tracking-tight">
+                                                                                   text-5xl
+                                                                                   font-light
+                                                                                   mb-6
+                                                                                   tracking-tight">
 
                         No Exhibitions Available
 
                     </h2>
 
                     <p class="text-gray-500
-                                          max-w-2xl
-                                          mx-auto
-                                          leading-relaxed">
+                                                                                  max-w-2xl
+                                                                                  mx-auto
+                                                                                  leading-relaxed">
 
                         Exhibition content will appear here once connected
                         to the museum ecosystem.

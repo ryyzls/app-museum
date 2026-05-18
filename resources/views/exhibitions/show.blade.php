@@ -10,7 +10,9 @@
         <div class="relative h-[90vh] overflow-hidden">
 
             {{-- Banner --}}
-            <img src="{{ $exhibition->banner_image }}" alt="{{ $exhibition->title }}"
+            <img src="{{ str_starts_with($exhibition->banner_image, 'http')
+        ? $exhibition->banner_image
+        : asset($exhibition->banner_image) }}" alt="{{ $exhibition->title }}"
                 class="absolute inset-0 w-full h-full object-cover">
 
             {{-- Overlay --}}
@@ -288,18 +290,18 @@
                                     </span>
 
                                     <span class="
-                                                            px-3 py-1 rounded-full text-xs uppercase tracking-[0.15em]
+                                                                        px-3 py-1 rounded-full text-xs uppercase tracking-[0.15em]
 
-                                                            @if($ticket->status === 'Available')
-                                                                bg-green-100 text-green-700
+                                                                        @if($ticket->status === 'Available')
+                                                                            bg-green-100 text-green-700
 
-                                                            @elseif($ticket->status === 'Sold Out')
-                                                                bg-red-100 text-red-700
+                                                                        @elseif($ticket->status === 'Sold Out')
+                                                                            bg-red-100 text-red-700
 
-                                                            @else
-                                                                bg-gray-200 text-gray-700
-                                                            @endif
-                                                        ">
+                                                                        @else
+                                                                            bg-gray-200 text-gray-700
+                                                                        @endif
+                                                                    ">
 
                                         {{ $ticket->status }}
 

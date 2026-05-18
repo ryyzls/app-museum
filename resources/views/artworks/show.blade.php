@@ -126,27 +126,8 @@
 
                     </a>
 
-                    {{-- Edit --}}
-                    <a href="/artworks/{{ $artwork->id }}/edit"
-                        class="uppercase tracking-[0.2em] text-sm border-b border-black pb-2">
 
-                        Edit Artwork
-
-                    </a>
-
-                    {{-- Delete --}}
-                    <form id="delete-form-{{ $artwork->id }}" action="{{ route('artworks.destroy', $artwork->id) }}"
-                        method="POST">
-
-                        @csrf
-                        @method('DELETE')
-
-                        <button type="button" onclick="confirmDelete({{ $artwork->id }})"
-                            class="uppercase tracking-[0.2em] text-sm border-b border-red-500 text-red-500 pb-2 hover:text-red-700 transition duration-300">
-
-                            Delete Artwork
-
-                        </button>
+                    @csrf
 
                     </form>
 

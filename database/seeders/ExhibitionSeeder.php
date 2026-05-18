@@ -38,7 +38,7 @@ class ExhibitionSeeder extends Seeder
 
                 'end_date' => '2024-06-17',
 
-                'museum_id' => 9,
+                'museum_id' => 1,
             ],
 
             [
@@ -57,7 +57,7 @@ class ExhibitionSeeder extends Seeder
 
                 'end_date' => '2024-01-29',
 
-                'museum_id' => 9,
+                'museum_id' => 1,
             ],
 
             [
@@ -76,7 +76,7 @@ class ExhibitionSeeder extends Seeder
 
                 'end_date' => '2024-01-08',
 
-                'museum_id' => 9,
+                'museum_id' => 1,
             ],
 
             [
@@ -95,7 +95,7 @@ class ExhibitionSeeder extends Seeder
 
                 'end_date' => '2023-01-23',
 
-                'museum_id' => 9,
+                'museum_id' => 1,
             ],
 
             [
@@ -114,7 +114,7 @@ class ExhibitionSeeder extends Seeder
 
                 'end_date' => '2022-07-25',
 
-                'museum_id' => 9,
+                'museum_id' => 1,
             ],
 
             /*
@@ -139,7 +139,7 @@ class ExhibitionSeeder extends Seeder
 
                 'end_date' => '2026-07-20',
 
-                'museum_id' => 9,
+                'museum_id' => 1,
             ],
 
             [
@@ -158,7 +158,7 @@ class ExhibitionSeeder extends Seeder
 
                 'end_date' => '2026-07-20',
 
-                'museum_id' => 9,
+                'museum_id' => 1,
             ],
 
             [
@@ -171,13 +171,13 @@ class ExhibitionSeeder extends Seeder
                     'An exhibition exploring ancient Mesopotamian relationships with water, hydraulic systems, and environmental sustainability.',
 
                 'banner_image' =>
-                    'https://api-www.louvre.fr/sites/default/files/2025-04/primeval-waters.jpg',
+                    'exhibition/comingsoon.png',
 
                 'start_date' => '2026-05-20',
 
                 'end_date' => '2027-03-15',
 
-                'museum_id' => 9,
+                'museum_id' => 1,
             ],
 
             [
@@ -195,7 +195,7 @@ class ExhibitionSeeder extends Seeder
 
                 'end_date' => '2026-12-26',
 
-                'museum_id' => 9,
+                'museum_id' => 1,
             ],
 
             [
@@ -214,7 +214,7 @@ class ExhibitionSeeder extends Seeder
 
                 'end_date' => '2026-12-02',
 
-                'museum_id' => 9,
+                'museum_id' => 1,
             ],
 
         ];

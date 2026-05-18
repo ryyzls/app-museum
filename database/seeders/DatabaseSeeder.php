@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            CategorySeeder::class,
-            MuseumSeeder::class,
-            ArtistSeeder::class,
+            //CategorySeeder::class,
+            // MuseumSeeder::class,
+            // ArtistSeeder::class,
             LouvreSeeder::class,
             ExhibitionSeeder::class,
             TicketSeeder::class
