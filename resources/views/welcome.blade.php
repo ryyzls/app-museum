@@ -127,19 +127,19 @@
                                 </a>
 
                                 {{-- Button 2 --}}
-                                <a href="/visit" class="h-[52px]
-                                                                                          rounded-full
-                                                                                          bg-white
-                                                                                          hover:bg-neutral-200
-                                                                                          text-black
-                                                                                          uppercase
-                                                                                          tracking-[0.15em]
-                                                                                          text-[11px]
-                                                                                          font-semibold
-                                                                                          flex items-center justify-center
-                                                                                          transition duration-300">
+                                <a href="/register" class="h-[52px]
+                                                                                        rounded-full
+                                                                                        bg-white
+                                                                                        hover:bg-neutral-200
+                                                                                        text-black
+                                                                                        uppercase
+                                                                                        tracking-[0.15em]
+                                                                                        text-[11px]
+                                                                                        font-semibold
+                                                                                        flex items-center justify-center
+                                                                                        transition duration-300">
 
-                                    Prepare your visit
+                                    Daftar Akun
 
                                 </a>
 
@@ -180,7 +180,7 @@
 
 
     {{-- FEATURED SECTION --}}
-    <section class="bg-[#f8f6f2] py-32">
+    <section id="triggerSection" class="bg-[#f8f6f2] py-32">
         <div class="max-w-7xl mx-auto px-8">
 
             {{-- Heading --}}
@@ -240,6 +240,76 @@
         </div>
     </section>
 
+    <div id="floatingBar"
+    class="fixed bottom-0 left-0 right-0 z-50 w-full bg-[#111111] border-t border-white/10 shadow-2xl overflow-hidden pointer-events-none"
+    style="opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease;">
+
+    <div class="w-full px-16 py-4">
+        <div class="flex items-center justify-between">
+
+            {{-- LEFT SIDE --}}
+            <div class="flex items-center text-white">
+
+                {{-- TITLE --}}
+                <div class="pr-10 border-r border-white/20 shrink-0">
+                    <h2 class="uppercase tracking-[0.18em] text-[13px] font-bold whitespace-nowrap">
+                        Welcome to the Alphaseum
+                    </h2>
+                </div>
+
+                {{-- OPEN TODAY --}}
+                <div class="px-10 border-r border-white/20 shrink-0">
+                    <p class="text-[13px] text-white/90 whitespace-nowrap">
+                        The museum is open today
+                    </p>
+                </div>
+
+                {{-- HOURS --}}
+                <div class="px-10 shrink-0">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[15px] font-semibold whitespace-nowrap">9:00 AM</span>
+                        <span class="text-white/50">→</span>
+                        <span class="text-[15px] font-semibold whitespace-nowrap">6:00 PM</span>
+                    </div>
+                </div>
+
+            </div>
+
+            {{-- BUTTONS --}}
+            <div class="flex items-center gap-3 shrink-0">
+
+                <a href="/tickets"
+                    class="h-[44px] px-7 rounded-full bg-[#008573] hover:bg-[#007465]
+                    text-white font-semibold text-[13px]
+                    flex items-center justify-center gap-2
+                    whitespace-nowrap transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                    </svg>
+                    Book a ticket
+                </a>
+
+                <a href="/register"
+                    class="h-[44px] px-7 rounded-full border border-white/30 hover:bg-white/10
+                    text-white font-semibold text-[13px]
+                    flex items-center justify-center gap-2
+                    whitespace-nowrap transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Daftar Akun
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
     <script>
 
@@ -296,5 +366,24 @@
         });
 
     </script>
+
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const floatingBar = document.getElementById('floatingBar');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            floatingBar.style.opacity = '1';
+            floatingBar.style.transform = 'translateY(0)';
+            floatingBar.style.pointerEvents = 'auto';
+        } else {
+            floatingBar.style.opacity = '0';
+            floatingBar.style.transform = 'translateY(40px)';
+            floatingBar.style.pointerEvents = 'none';
+        }
+    });
+});
+</script>
 
 @endsection
