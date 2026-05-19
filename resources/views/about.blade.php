@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
 
-    @vite(['resources/css/about.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
+    @include('components.navbar')
 
     <section class="hero">
         <h1>ABOUT US</h1>
@@ -76,11 +77,11 @@
                 <p>Database Administrator</p>
 
                 <div class="socials">
-                    <a href="#"><img src="{{ asset('images/instagram.png') }}"></a>
+                    <a href="https://www.instagram.com/marrierzkl17?igsh=MWpmcTdqbWdnc2FudA=="><img src="{{ asset('images/instagram.png') }}"></a>
 
-                    <a href="#"><img src="{{ asset('images/gmail.png') }}"></a>
+                    <a href="mailto:marierizqullah06@gmail.com"><img src="{{ asset('images/gmail.png') }}"></a>
 
-                    <a href="#"><img src="{{ asset('images/github.png') }}"></a>
+                    <a href="https://github.com/Mar1701"><img src="{{ asset('images/github.png') }}"></a>
                 </div>
 
             </div>
@@ -94,11 +95,11 @@
                 <p>Backend Developer</p>
 
                 <div class="socials">
-                    <a href="#"><img src="{{ asset('images/instagram.png') }}"></a>
+                    <a href="https://www.instagram.com/juddtrnp?igsh=bnRxOGZkaHV5d2Jp"><img src="{{ asset('images/instagram.png') }}"></a>
 
-                    <a href="#"><img src="{{ asset('images/gmail.png') }}"></a>
+                    <a href="mailto:judabenhur3104@gmail.com"><img src="{{ asset('images/gmail.png') }}"></a>
 
-                    <a href="#"><img src="{{ asset('images/github.png') }}"></a>
+                    <a href="https://github.com/Juda-rgb"><img src="{{ asset('images/github.png') }}"></a>
                 </div>
 
             </div>
