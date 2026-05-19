@@ -7,6 +7,8 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminArtworkController;
+use App\Http\Controllers\Admin\AdminExhibitionController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,8 +45,16 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/artworks/{artwork}/edit', [AdminArtworkController::class, 'edit'])->name('admin.artworks.edit');
     Route::put('/artworks/{artwork}', [AdminArtworkController::class, 'update'])->name('admin.artworks.update');
-    Route::delete('/artworks/{artwork}', [AdminArtworkController::class, 'destroy']) ->name('admin.artworks.destroy');
+    Route::delete('/artworks/{artwork}', [AdminArtworkController::class, 'destroy'])->name('admin.artworks.destroy');
 
+    Route::get('/exhibitions', [AdminExhibitionController::class, 'index'])->name('admin.exhibitions.index');
+
+    Route::get('/exhibitions/create', [AdminExhibitionController::class, 'create'])->name('admin.exhibitions.create');
+    Route::post('/exhibitions', [AdminExhibitionController::class, 'store'])->name('admin.exhibitions.store');
+
+});
+Route::get('/about', function () {
+    return view('about');
 });
 
 
@@ -53,3 +63,7 @@ Route::resource('artworks', ArtworkController::class);
 Route::resource('exhibitions', ExhibitionController::class);
 Route::resource('tickets', TicketController::class);
 Route::resource('transactions', TransactionController::class);
+Route::get('/about', [CommentController::class, 'index']);
+Route::post('/comment/store', [CommentController::class, 'store'])->middleware('auth');
+Route::put('/comment/update/{id}', [CommentController::class, 'update']);
+Route::delete('/comment/delete/{id}', [CommentController::class, 'destroy']);
