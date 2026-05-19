@@ -16,7 +16,7 @@
         <p style="max-width: 85%; width: 100%; margin: 0 auto; line-height: 1.6;">
             Layaknya Musée du Louvre yang berdiri kokoh melintasi zaman sebagai ruang bertemunya sejarah, seni, dan peradaban manusia, kami percaya bahwa sebuah platform digital bukan sekadar baris kode tanpa jiwa. Terinspirasi dari kemegahan kurasi Louvre, kami memandang setiap elemen, fitur, dan interaksi di dalam website ini sebagai sebuah karya arsitektur digital yang dirancang dengan presisi tinggi.<br><br>
 
-Kami tidak hanya membangun sebuah situs web modern; kami menciptakan sebuah 'galeri pengalaman'. Tempat di mana fungsionalitas mutakhir bersanding harmonis dengan estetika yang elegan, memberikan ruang bagi pengguna untuk menjelajah tanpa batas, menemukan nilai baru, dan merasakan perjalanan digital yang imersif serta bermakna.
+Kami tidak hanya membangun sebuah situs web modern, kami menciptakan sebuah 'galeri pengalaman' Tempat di mana fungsionalitas mutakhir bersanding harmonis dengan estetika yang elegan, memberikan ruang bagi pengguna untuk menjelajah tanpa batas, menemukan nilai baru, dan merasakan perjalanan digital yang imersif serta bermakna.
         </p>
     </section>
 
@@ -60,11 +60,11 @@ Kami tidak hanya membangun sebuah situs web modern; kami menciptakan sebuah 'gal
                 <p>Full Stack Developer</p>
 
                 <div class="socials">
-                    <a href="#"><img src="{{ asset('images/instagram.png') }}"></a>
+                    <a href="https://www.instagram.com/ryyzlls?igsh=MWR6emVzOXl1M21xNg=="><img src="{{ asset('images/instagram.png') }}"></a>
 
-                    <a href="#"><img src="{{ asset('images/gmail.png') }}"></a>
+                    <a href="mailto:fahriarizal@gmail.com"><img src="{{ asset('images/gmail.png') }}"></a>
 
-                    <a href="#"><img src="{{ asset('images/github.png') }}"></a>
+                    <a href="https://github.com/ryyzls"><img src="{{ asset('images/github.png') }}"></a>
                 </div>
 
             </div>
@@ -75,7 +75,7 @@ Kami tidak hanya membangun sebuah situs web modern; kami menciptakan sebuah 'gal
 
                 <h3>Mar'ie RIzqullah</h3>
 
-                <p>Database Administrator</p>
+                <p>Database Engineer</p>
 
                 <div class="socials">
                     <a href="https://www.instagram.com/marrierzkl17?igsh=MWpmcTdqbWdnc2FudA=="><img src="{{ asset('images/instagram.png') }}"></a>
