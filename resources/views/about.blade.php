@@ -13,9 +13,10 @@
     <section class="hero">
         <h1>ABOUT US</h1>
 
-        <p>
-            Kami adalah website modern yang memberikan pengalaman terbaik
-            untuk user dengan tampilan menarik dan fitur yang lengkap.
+        <p style="max-width: 85%; width: 100%; margin: 0 auto; line-height: 1.6;">
+            Layaknya Musée du Louvre yang berdiri kokoh melintasi zaman sebagai ruang bertemunya sejarah, seni, dan peradaban manusia, kami percaya bahwa sebuah platform digital bukan sekadar baris kode tanpa jiwa. Terinspirasi dari kemegahan kurasi Louvre, kami memandang setiap elemen, fitur, dan interaksi di dalam website ini sebagai sebuah karya arsitektur digital yang dirancang dengan presisi tinggi.<br><br>
+
+Kami tidak hanya membangun sebuah situs web modern; kami menciptakan sebuah 'galeri pengalaman'. Tempat di mana fungsionalitas mutakhir bersanding harmonis dengan estetika yang elegan, memberikan ruang bagi pengguna untuk menjelajah tanpa batas, menemukan nilai baru, dan merasakan perjalanan digital yang imersif serta bermakna.
         </p>
     </section>
 
