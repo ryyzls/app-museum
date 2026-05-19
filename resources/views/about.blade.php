@@ -60,8 +60,6 @@
                 <div class="socials">
                     <a href="#"><img src="{{ asset('images/instagram.png') }}"></a>
 
-                    <a href="#"><img src="{{ asset('images/linkedin.png') }}"></a>
-
                     <a href="#"><img src="{{ asset('images/gmail.png') }}"></a>
 
                     <a href="#"><img src="{{ asset('images/github.png') }}"></a>
@@ -79,8 +77,6 @@
 
                 <div class="socials">
                     <a href="#"><img src="{{ asset('images/instagram.png') }}"></a>
-
-                    <a href="#"><img src="{{ asset('images/linkedin.png') }}"></a>
 
                     <a href="#"><img src="{{ asset('images/gmail.png') }}"></a>
 
@@ -100,8 +96,6 @@
                 <div class="socials">
                     <a href="#"><img src="{{ asset('images/instagram.png') }}"></a>
 
-                    <a href="#"><img src="{{ asset('images/linkedin.png') }}"></a>
-
                     <a href="#"><img src="{{ asset('images/gmail.png') }}"></a>
 
                     <a href="#"><img src="{{ asset('images/github.png') }}"></a>
@@ -119,8 +113,6 @@
 
                 <div class="socials">
                     <a href="#"><img src="{{ asset('images/instagram.png') }}"></a>
-
-                    <a href="#"><img src="{{ asset('images/linkedin.png') }}"></a>
 
                     <a href="#"><img src="{{ asset('images/gmail.png') }}"></a>
 
