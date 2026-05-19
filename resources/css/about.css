@@ -1,0 +1,360 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+    color:#111;
+}
+
+/* HERO */
+
+.hero{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:100px 20px;
+}
+
+.hero h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto;
+    line-height:1.8;
+    color:#ccc;
+}
+
+/* ADVANTAGES */
+
+.advantages{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.advantages h2{
+    margin-bottom:50px;
+    font-size:35px;
+}
+
+.adv-container{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.adv-card{
+    width:300px;
+    background:white;
+    padding:35px 25px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.adv-card:hover{
+    transform:translateY(-8px);
+}
+
+.adv-card h3{
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.adv-card p{
+    color:#666;
+    line-height:1.6;
+}
+
+/* COMMENT SECTION */
+
+.comment-section{
+    padding:80px 20px;
+}
+
+.comment-section h2{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:35px;
+}
+
+/* COMMENT FORM */
+
+.comment-form{
+    max-width:800px;
+    margin:0 auto 60px auto;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.comment-form input,
+.comment-form textarea{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-bottom:2px solid #ccc;
+    background:transparent;
+    outline:none;
+    font-size:16px;
+}
+
+.comment-form textarea{
+    resize:none;
+    overflow:hidden;
+    min-height:40px;
+    max-height:200px;
+    line-height:1.5;
+    padding-top:10px;
+}
+
+.comment-form button{
+    width:150px;
+    padding:12px;
+    border:none;
+    border-radius:30px;
+    background:#111;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.comment-form button:hover{
+    background:#333;
+}
+
+/* YOUTUBE STYLE COMMENTS */
+
+.youtube-comments{
+    max-width:900px;
+    margin:auto;
+}
+
+.youtube-comment{
+    display:flex;
+    gap:15px;
+    margin-bottom:35px;
+}
+
+.profile-circle{
+    min-width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#111;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:20px;
+}
+
+.comment-content{
+    width:100%;
+}
+
+.comment-content h4{
+    margin-bottom:5px;
+    font-size:16px;
+}
+
+.comment-content p{
+    line-height:1.6;
+    margin-bottom:10px;
+}
+
+/* COMMENT ACTIONS */
+
+.comment-actions{
+    display:flex;
+    gap:15px;
+    align-items:center;
+    margin-top:5px;
+}
+
+.comment-actions form{
+    margin:0;
+}
+
+.text-btn{
+    background:none;
+    border:none;
+    color:#666;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.text-btn:hover{
+    color:black;
+}
+
+.delete-text{
+    color:red;
+}
+
+/* EDIT FORM */
+
+.edit-form{
+    display:none;
+    margin-top:15px;
+}
+
+.edit-form input,
+.edit-form textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    margin-bottom:10px;
+    outline:none;
+}
+
+.edit-form textarea{
+    resize:none;
+    height:80px;
+}
+
+.save-btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:25px;
+    background:#111;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.save-btn:hover{
+    background:#333;
+}
+
+/* TEAM SECTION */
+
+.team-section{
+    padding:100px 20px;
+    text-align:center;
+}
+
+.team-section h2{
+    font-size:40px;
+    margin-bottom:60px;
+}
+
+.team-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.team-card{
+    background:#222;
+    color:white;
+    width:280px;
+    padding:30px 20px;
+    border-radius:25px;
+    transition:0.3s;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+.team-card:hover{
+    transform:translateY(-10px);
+}
+
+.team-card img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.team-card h3{
+    margin-top:20px;
+    margin-bottom:10px;
+    font-size:24px;
+}
+
+.team-card p{
+    color:#ccc;
+    margin-bottom:20px;
+}
+
+/* SOCIAL ICONS */
+
+.socials{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.socials a{
+    width:45px;
+    height:45px;
+    background:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:0.3s;
+}
+
+.socials a:hover{
+    transform:scale(1.1);
+}
+
+.socials img{
+    width:22px;
+    height:22px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .advantages h2,
+    .comment-section h2,
+    .team-section h2{
+        font-size:28px;
+    }
+
+    .youtube-comment{
+        flex-direction:column;
+    }
+
+    .profile-circle{
+        width:50px;
+    }
+}
+
+.comment-section{
+    padding:80px 20px;
+    display:flex;
+    justify-content:center;
+}
+
+.comment-wrapper{
+    width:100%;
+    max-width:1000px;
+    background:white;
+    padding:50px;
+    border-radius:25px;
+    box-shadow:0 5px 25px rgba(0,0,0,0.1);
+}
+
+.comment-wrapper h2{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:35px;
+}
