@@ -19,12 +19,12 @@
                 </a>
 
                 {{-- Right: Tickets Button Premium --}}
-                <a href="/tickets"
+                <a href="/login"
                     class="relative inline-flex items-center gap-2 overflow-hidden bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-black px-6 py-2.5 rounded-full transition-all duration-300 text-xs font-semibold uppercase tracking-[0.15em] shadow-[0_4px_20px_rgba(45,212,191,0.2)] hover:shadow-[0_4px_25px_rgba(45,212,191,0.4)] hover:scale-[1.02]">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
                     </svg>
-                    <span>Tickets</span>
+                    <span>Login</span>
                 </a>
             </div>
 
@@ -33,7 +33,7 @@
                 @php
                     $navItems = [
                         '/' => 'Visit',
-                        '/exhibitions' => 'Exhibitions and Events',
+                        '/exhibitions' => 'Exhibitions',
                         '/artworks' => 'Explore'
                     ];
                 @endphp
@@ -49,7 +49,7 @@
                 {{-- Dropdown Menu --}}
                 <div class="relative group">
                     <button class="flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-medium text-white/50 hover:text-white transition py-1">
-                        See More
+                        Lainnya
                         <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
@@ -58,7 +58,7 @@
                     {{-- Dropdown Content Premium --}}
                     <div class="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-56 bg-neutral-950 border border-white/10 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 overflow-hidden">
                         <div class="p-2 space-y-1">
-                            @foreach(['/about' => 'About Us', '/collection' => 'Collection', '/visit' => 'Plan Your Visit', '/contact' => 'Contact'] as $link => $name)
+                            @foreach(['/about' => 'About Us', '/contact' => 'Contact'] as $link => $name)
                                 <a href="{{ $link }}" class="block px-4 py-2.5 text-xs uppercase tracking-[0.1em] text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition duration-200">
                                     {{ $name }}
                                 </a>
@@ -84,13 +84,11 @@
         <div id="mobile-menu" class="hidden bg-black border-t border-white/5">
             <div class="px-6 py-6 space-y-4">
                 <a href="/" class="block text-sm uppercase tracking-[0.15em] {{ request()->is('/') ? 'text-teal-400 font-medium' : 'text-white/60' }}">Visit</a>
-                <a href="/exhibitions" class="block text-sm uppercase tracking-[0.15em] {{ request()->is('exhibitions*') ? 'text-teal-400 font-medium' : 'text-white/60' }}">Exhibitions and Events</a>
+                <a href="/exhibitions" class="block text-sm uppercase tracking-[0.15em] {{ request()->is('exhibitions*') ? 'text-teal-400 font-medium' : 'text-white/60' }}">Exhibitions</a>
                 <a href="/artworks" class="block text-sm uppercase tracking-[0.15em] {{ request()->is('artworks*') ? 'text-teal-400 font-medium' : 'text-white/60' }}">Explore</a>
                 
                 <div class="pt-4 border-t border-white/5 space-y-3">
                     <a href="/about" class="block text-xs uppercase tracking-[0.1em] text-white/40 hover:text-white">About Us</a>
-                    <a href="/collection" class="block text-xs uppercase tracking-[0.1em] text-white/40 hover:text-white">Collection</a>
-                    <a href="/visit" class="block text-xs uppercase tracking-[0.1em] text-white/40 hover:text-white">Plan Your Visit</a>
                     <a href="/contact" class="block text-xs uppercase tracking-[0.1em] text-white/40 hover:text-white">Contact</a>
                 </div>
             </div>

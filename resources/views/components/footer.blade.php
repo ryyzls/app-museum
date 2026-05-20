@@ -23,7 +23,7 @@
                     ALPHASEUM
                 </h2>
                 <p class="text-white/40 text-sm font-light max-w-sm leading-relaxed">
-                    A curated digital museum platform presenting timeless artworks, immersive exhibitions, and architectural cultural experiences globally.
+                    Sebuah platform museum digital pilihan yang menyajikan karya seni abadi, pameran interaktif, dan pengalaman budaya arsitektur secara global.
                 </p>
             </div>
 
@@ -57,9 +57,9 @@
             <div class="space-y-4">
                 <p class="uppercase tracking-[0.25em] text-xs font-semibold text-white/30">Explore</p>
                 <ul class="space-y-2.5 text-sm">
-                    <li><a href="/artworks" class="text-white/50 hover:text-white transition-colors duration-200 font-light flex items-center gap-1 group">Online Artworks <span class="opacity-0 translate-x-[-5px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-teal-400">→</span></a></li>
-                    <li><a href="/exhibitions" class="text-white/50 hover:text-white transition-colors duration-200 font-light flex items-center gap-1 group">Virtual Exhibitions <span class="opacity-0 translate-x-[-5px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-teal-400">→</span></a></li>
-                    <li><a href="/tickets" class="text-white/50 hover:text-white transition-colors duration-200 font-light flex items-center gap-1 group">Book Tickets <span class="opacity-0 translate-x-[-5px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-teal-400">→</span></a></li>
+                    <li><a href="/artworks" class="text-white/50 hover:text-white transition-colors duration-200 font-light flex items-center gap-1 group">Artworks Online <span class="opacity-0 translate-x-[-5px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-teal-400">→</span></a></li>
+                    <li><a href="/exhibitions" class="text-white/50 hover:text-white transition-colors duration-200 font-light flex items-center gap-1 group">Pameran Virtual <span class="opacity-0 translate-x-[-5px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-teal-400">→</span></a></li>
+                    <li><a href="/tickets" class="text-white/50 hover:text-white transition-colors duration-200 font-light flex items-center gap-1 group">Booking Tiket <span class="opacity-0 translate-x-[-5px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-teal-400">→</span></a></li>
                 </ul>
             </div>
 
@@ -67,21 +67,21 @@
             <div class="space-y-4">
                 <p class="uppercase tracking-[0.25em] text-xs font-semibold text-white/30">Platform</p>
                 <ul class="space-y-2.5 text-sm">
-                    <li><a href="/about" class="text-white/50 hover:text-white transition-colors duration-200 font-light">Our Philosophy</a></li>
-                    <li><a href="/collection" class="text-white/50 hover:text-white transition-colors duration-200 font-light">Digital Archiving</a></li>
+                    <li><a href="/about" class="text-white/50 hover:text-white transition-colors duration-200 font-light">Filosofi Kami</a></li>
+                    <li><a href="/collection" class="text-white/50 hover:text-white transition-colors duration-200 font-light">Pengarsipan Digital</a></li>
                     <li><a href="/contact" class="text-white/50 hover:text-white transition-colors duration-200 font-light">Partnerships</a></li>
                 </ul>
             </div>
 
             {{-- Column 3: Museum Hours (Live Status) --}}
             <div class="space-y-4">
-                <p class="uppercase tracking-[0.25em] text-xs font-semibold text-white/30">Museum Hours</p>
+                <p class="uppercase tracking-[0.25em] text-xs font-semibold text-white/30">Jadwal Museum</p>
                 <div class="space-y-1 text-sm text-white/50 font-light">
-                    <p class="text-white/80 font-normal">Mon — Sun</p>
+                    <p class="text-white/80 font-normal">Sen — Min</p>
                     <p>09:00 — 20:00 WIB</p>
                     <div class="inline-flex items-center gap-1.5 pt-2 text-xs text-emerald-400">
                         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.5)]"></span>
-                        <span>Open for Visitors</span>
+                        <span>Terbuka untuk umum</span>
                     </div>
                 </div>
             </div>
