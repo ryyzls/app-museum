@@ -68,9 +68,9 @@
                                 </p>
                                 {{-- Opening Hours --}}
                                 <div class="mt-4 flex items-center gap-3 text-white font-serif">
-                                    <span class="text-[18px] tracking-[0.08em]">9:00 AM</span>
+                                    <span class="text-[18px] tracking-[0.08em]">9:00 WIB</span>
                                     <span class="text-white/40 text-lg">→</span>
-                                    <span class="text-[18px] tracking-[0.08em]">9:00 PM</span>
+                                    <span class="text-[18px] tracking-[0.08em]">20.00 WIB</span>
                                 </div>
                             </div>
                             {{-- RIGHT BUTTONS --}}
