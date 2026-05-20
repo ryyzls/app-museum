@@ -77,11 +77,11 @@
                             <div class="lg:col-span-5 px-6 py-5 flex flex-col justify-center gap-3">
                                 {{-- Button 1 --}}
                                 <a href="/tickets" class="h-[52px] rounded-full bg-[#008573] hover:bg-[#007465] text-white uppercase tracking-[0.15em] text-[11px] font-semibold flex items-center justify-center transition duration-300">
-                                    Book a ticket
+                                    Pesan Tiket
                                 </a>
                                 {{-- Button 2 --}}
                                 <a href="/register" class="h-[52px] rounded-full bg-white hover:bg-neutral-200 text-black uppercase tracking-[0.15em] text-[11px] font-semibold flex items-center justify-center transition duration-300">
-                                    Register
+                                    Daftar Akun
                                 </a>
                             </div>
                         </div>
@@ -570,21 +570,21 @@
                     {{-- TITLE --}}
                     <div class="pr-10 border-r border-white/20 shrink-0">
                         <h2 class="uppercase tracking-[0.18em] text-[13px] font-bold whitespace-nowrap">
-                            Welcome to the Alphaseum
+                            Selamat Datang di Alphaseum
                         </h2>
                     </div>
                     {{-- OPEN TODAY --}}
                     <div class="px-10 border-r border-white/20 shrink-0">
                         <p class="text-[13px] text-white/90 whitespace-nowrap">
-                            The museum is open today
+                            Museum kami buka hari ini
                         </p>
                     </div>
                     {{-- HOURS --}}
                     <div class="px-10 shrink-0">
                         <div class="flex items-center gap-4">
-                            <span class="text-[15px] font-semibold whitespace-nowrap">9:00 AM</span>
+                            <span class="text-[15px] font-semibold whitespace-nowrap">9:00 WIB</span>
                             <span class="text-white/50">→</span>
-                            <span class="text-[15px] font-semibold whitespace-nowrap">9:00 PM</span>
+                            <span class="text-[15px] font-semibold whitespace-nowrap">20.00 WIB</span>
                         </div>
                     </div>
                 </div>
@@ -595,13 +595,13 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
                         </svg>
-                        Book a ticket
+                        Pesan Tiket
                     </a>
                     <a href="/register" class="h-[44px] px-7 rounded-full border border-white/30 hover:bg-white/10 text-white font-semibold text-[13px] flex items-center justify-center gap-2 whitespace-nowrap transition duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        Register
+                        Daftar Akun
                     </a>
                 </div>
             </div>
