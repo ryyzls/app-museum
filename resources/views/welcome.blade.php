@@ -56,9 +56,7 @@
                             {{-- LEFT CONTENT --}}
                             <div class="lg:col-span-7 px-8 py-5 flex flex-col justify-center border-r border-white/10">
                                 {{-- Title --}}
-                                <h1 class="text-white uppercase tracking-[0.14em]
-                                           text-[18px] md:text-[22px]
-                                           leading-[1.25] font-serif">
+                                <h1 class="text-white uppercase tracking-[0.14em] text-[18px] md:text-[22px] leading-[1.25] font-serif">
                                     Selamat Datang di <br class="hidden md:block">
                                     Alphaseum
                                 </h1>
@@ -133,6 +131,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                         
                         <div class="md:col-span-2 group cursor-pointer flex flex-col">
+                            <a href="http://127.0.0.1:8000/exhibitions/7" class="md:col-span-2 group cursor-pointer flex flex-col">
                             <div class="relative overflow-hidden bg-neutral-100 w-full h-[300px] md:h-[520px] rounded-sm">
                                 <div class="absolute top-4 left-4 z-10">
                                     <span class="bg-[#2a4e63]/90 text-white text-[10px] uppercase tracking-wider px-3 py-1.5 font-medium rounded-sm">
@@ -149,6 +148,7 @@
                                     Michelangelo dan Rodin, dengan menjadikan tubuh sebagai subjek utama karya seni mereka, menunjukkan bahwa keduanya memandang tubuh sebagai sesuatu yang dijiwai oleh kehidupan batin yang intens.
                                 </p>
                             </div>
+                        </a>
                         </div>
 
                         <div class="group cursor-pointer flex flex-col">
@@ -190,6 +190,7 @@
 
                 <div class="w-full md:w-1/3 flex flex-col gap-y-12">
                     <div class="group cursor-pointer flex flex-col">
+                        <a href="http://127.0.0.1:8000/exhibitions/6" class="group cursor-pointer flex flex-col">
                         <div class="relative overflow-hidden bg-neutral-100 aspect-square w-full mb-6 rounded-sm">
                             <div class="absolute top-4 left-4 z-10">
                                 <span class="bg-[#2a4e63]/90 text-white text-[10px] uppercase tracking-wider px-3 py-1.5 font-medium rounded-sm">
@@ -204,9 +205,11 @@
                         <p class="text-neutral-900 text-sm font-semibold leading-relaxed">
                             Martin Schongauer adalah salah satu seniman Jermanik paling populer di akhir Abad Pertengahan – dan salah satu tokoh utama pada periode ini.
                         </p>
+                    </a>
                     </div>
 
                     <div class="group cursor-pointer flex flex-col pt-2">
+                        <a href="http://127.0.0.1:8000/artworks" class="group cursor-pointer flex flex-col pt-2">
                         <div class="relative overflow-hidden bg-neutral-100 aspect-square w-full mb-6 rounded-sm">
                             <div class="absolute top-4 left-4 z-10">
                                 <span class="bg-[#2a4e63]/90 text-white text-[10px] uppercase tracking-wider px-3 py-1.5 font-medium rounded-sm">
@@ -221,6 +224,7 @@
                         <p class="text-neutral-900 text-sm font-semibold leading-relaxed">
                             Beberapa karya lainnya yang disukai di alphaseum
                         </p>
+                        <a>
                     </div>
                 </div>
             </div>
