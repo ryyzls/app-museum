@@ -1,0 +1,8 @@
+vendor/
+node_modules/
+frontend/node_modules/
+public/graph.json
+public/assets/
+public/index.html
+.claude/
+.idea/

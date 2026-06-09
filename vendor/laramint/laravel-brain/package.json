@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "lint": "cd frontend && npm run lint",
+    "pint": "vendor/bin/pint",
+    "phpstan": "vendor/bin/phpstan analyse --memory-limit=1G",
+    "prep": "npm run lint && npm run build && npm run pint && npm run phpstan",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.0"
+  }
+}

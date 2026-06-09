@@ -1,0 +1,3 @@
+# Allow fixture vendor directories to be committed
+!vendor/
+!vendor/**

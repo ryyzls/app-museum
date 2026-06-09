@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ── Code Style ───────────────────────────────────────────────────────────────
+  pint:
+    name: Code Style (Pint)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          coverage: none
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Run Pint (dry-run)
+        run: composer pint:test
+
+  # ── Static Analysis ───────────────────────────────────────────────────────────
+  phpstan:
+    name: Static Analysis (PHPStan)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          coverage: none
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Run PHPStan
+        run: composer stan
+
+  # ── Tests ─────────────────────────────────────────────────────────────────────
+  tests:
+    name: "Tests – PHP ${{ matrix.php }} / Laravel ${{ matrix.laravel }}"
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { php: "8.1", laravel: "9",  testbench: "^7.0" }
+          - { php: "8.1", laravel: "10", testbench: "^8.0" }
+          - { php: "8.2", laravel: "11", testbench: "^9.0" }
+          - { php: "8.3", laravel: "11", testbench: "^9.0" }
+          - { php: "8.2", laravel: "12", testbench: "^10.0" }
+          - { php: "8.3", laravel: "12", testbench: "^10.0" }
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, json
+          coverage: none
+
+      - name: Remove dev tools not needed for test runs
+        run: composer remove larastan/larastan laravel/pint --dev --no-update
+
+      - name: Install dependencies
+        run: |
+          composer update \
+            --with "illuminate/support:^${{ matrix.laravel }}.0" \
+            --with "orchestra/testbench:${{ matrix.testbench }}" \
+            --prefer-dist --no-interaction --no-progress
+
+      - name: Run tests
+        run: vendor/bin/phpunit
