@@ -30,7 +30,7 @@ class LouvreSeeder extends Seeder
         array_shift($rows);
 
         // test 100 dulu
-        $rows = array_slice($rows, 0, 150);
+        $rows = array_slice($rows, 0, 3200);
 
         $imported = 0;
         $skipped = 0;

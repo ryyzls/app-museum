@@ -48,12 +48,12 @@
 
             </div>
 
-            <a href="/artworks/create"
-                class="border border-black px-6 py-3 uppercase tracking-[0.2em] text-sm hover:bg-black hover:text-white transition duration-300">
+            <!-- <a href="/artworks/create"
+                        class="border border-black px-6 py-3 uppercase tracking-[0.2em] text-sm hover:bg-black hover:text-white transition duration-300">
 
-                Add Artwork
+                        Add Artwork
 
-            </a>
+                    </a> -->
 
         </div>
 
@@ -165,7 +165,9 @@
                         {{-- Image --}}
                         <div class="relative overflow-hidden bg-gray-200">
 
-                            <img src="{{ $artwork->image_url }}" onerror="this.src='{{ asset('images/artworks/fallback.jpg') }}'"
+                            <img src="{{ str_starts_with($artwork->image_url, 'http')
+                        ? $artwork->image_url
+                        : asset('storage/' . $artwork->image_url) }}" onerror="this.src='{{ asset('images/artworks/fallback.jpg') }}'"
                                 class="h-[500px] w-full object-cover transition duration-500" alt="{{ $artwork->title }}">
 
                             <div

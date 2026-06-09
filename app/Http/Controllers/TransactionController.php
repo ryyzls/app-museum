@@ -83,17 +83,20 @@ class TransactionController extends Controller
 
         $transaction = Transaction::create([
 
+            'user_id' => auth()->id(),
+
             'ticket_id' => $ticket->id,
 
             'quantity' => $validated['quantity'],
 
             'total_price' => $totalPrice,
 
-            'payment_method' => $validated['payment_method'],
+            // 'payment_method' => $validated['payment_method'],
 
-            'payment_status' => 'Pending',
+            'payment_status' => 'pending',
 
             'transaction_code' => $transactionCode,
+            'visit_date' => $ticket->visit_date,
 
         ]);
 
@@ -209,7 +212,7 @@ class TransactionController extends Controller
             'status' => 'pending',
         ]);
 
-        $ticket->stock -= $validated['quantity'];
+        $ticket->available_quota -= $validated['quantity'];
         $ticket->save();
 
         return response()->json([

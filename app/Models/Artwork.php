@@ -4,15 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Review;
 
 class Artwork extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'ark_id',
         'title',
         'description',
-        'image',
+        'image_url',
         'artist_id',
         'category_id',
         'museum_id',
@@ -31,6 +33,11 @@ class Artwork extends Model
     public function museum()
     {
         return $this->belongsTo(Museum::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
     public function exhibitions()

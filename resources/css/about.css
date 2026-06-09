@@ -1,353 +1,441 @@
-body{
-    background:#f5f5f5;
-    color:#111;
+body {
+    background: #f5f5f5;
+    color: #111;
 }
 
 /* HERO */
 
-.hero{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:100px 20px;
+.hero {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
 }
 
-.hero h1{
-    font-size:60px;
-    margin-bottom:20px;
+.hero h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
 }
 
-.hero p{
-    max-width:700px;
-    margin:auto;
-    line-height:1.8;
-    color:#ccc;
+.hero p {
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.8;
+    color: #ccc;
+}
+
+.h2 {
+    text-align: center;
 }
 
 /* ADVANTAGES */
 
-.advantages{
-    padding:80px 20px;
-    text-align:center;
+.advantages::before {
+    content: 'ALPHASÉUM DATABASE EXPERIENCE';
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    letter-spacing: .45em;
+    color: #9ca3af;
+
 }
 
-.advantages h2{
-    margin-bottom:50px;
-    font-size:35px;
+.advantages {
+    position: relative;
+    padding: 140px 40px;
+    background:
+        radial-gradient(circle at top,
+            rgba(201, 169, 110, .08),
+            transparent 40%),
+        #f5f5f5;
+    overflow: hidden;
+
+    text-align: center;
 }
 
-.adv-container{
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    flex-wrap:wrap;
+.advantages h2 {
+    font-size: 72px;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+    color: #111;
+    font-family: serif;
+    text-align: center;
 }
 
-.adv-card{
-    width:300px;
-    background:white;
-    padding:35px 25px;
-    border-radius:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.1);
-    transition:0.3s;
+.adv-container {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-top: 90px;
 }
 
-.adv-card:hover{
-    transform:translateY(-8px);
+
+/* .adv-card {
+    width: 300px;
+    background: white;
+    padding: 35px 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
 }
 
-.adv-card h3{
-    margin-bottom:15px;
-    font-size:22px;
+.adv-card:hover {
+    transform: translateY(-8px);
+} */
+
+.adv-card {
+    position: relative;
+    background:
+        linear-gradient(145deg,
+            rgba(255, 255, 255, .9),
+            rgba(255, 255, 255, .72));
+
+    backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255, 255, 255, .6);
+
+    border-radius: 36px;
+
+    padding: 55px 42px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, .04),
+        inset 0 1px 0 rgba(255, 255, 255, .8);
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease;
+
+    overflow: hidden;
 }
 
-.adv-card p{
-    color:#666;
-    line-height:1.6;
+.adv-card:hover {
+    transform:
+        translateY(-12px) scale(1.015);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, .08);
+
+}
+
+.adv-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top right,
+            rgba(1, 177, 201, 0.274),
+            transparent 35%);
+    opacity: 0;
+    transition: .45s ease;
+}
+
+.adv-card:hover::before {
+    opacity: 1;
+}
+
+.adv-card h3 {
+    font-size: 14px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    color: #111;
+    line-height: 1.8;
+}
+
+.adv-card p {
+    color: #4b5563;
+    line-height: 1.9;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 /* COMMENT SECTION */
 
-.comment-section{
-    padding:80px 20px;
-    display:flex;
-    justify-content:center;
+.comment-section {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
 }
 
-.comment-section h2{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:35px;
+.comment-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 35px;
 }
 
 /* COMMENT FORM */
 
-.comment-form{
-    max-width:800px;
-    margin:0 auto 60px auto;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
+.comment-form {
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .comment-form input,
-.comment-form textarea{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-bottom:2px solid #ccc;
-    background:transparent;
-    outline:none;
-    font-size:16px;
+.comment-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
 }
 
-.comment-form textarea{
-    resize:none;
-    overflow:hidden;
-    min-height:40px;
-    max-height:200px;
-    line-height:1.5;
-    padding-top:10px;
+.comment-form textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 40px;
+    max-height: 200px;
+    line-height: 1.5;
+    padding-top: 10px;
 }
 
-.comment-form button{
-    width:150px;
-    padding:12px;
-    border:none;
-    border-radius:30px;
-    background:#111;
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
+.comment-form button {
+    width: 150px;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background: #111;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.comment-form button:hover{
-    background:#333;
+.comment-form button:hover {
+    background: #333;
 }
 
 /* YOUTUBE STYLE COMMENTS */
 
-.youtube-comments{
-    max-width:900px;
-    margin:auto;
+.youtube-comments {
+    max-width: 900px;
+    margin: auto;
 }
 
-.youtube-comment{
-    display:flex;
-    gap:15px;
-    margin-bottom:35px;
+.youtube-comment {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 35px;
 }
 
-.profile-circle{
-    min-width:50px;
-    height:50px;
-    border-radius:50%;
-    background:#111;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    font-size:20px;
+.profile-circle {
+    min-width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #111;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
 }
 
-.comment-content{
-    width:100%;
+.comment-content {
+    width: 100%;
 }
 
-.comment-content h4{
-    margin-bottom:5px;
-    font-size:16px;
+.comment-content h4 {
+    margin-bottom: 5px;
+    font-size: 16px;
 }
 
-.comment-content p{
-    line-height:1.6;
-    margin-bottom:10px;
+.comment-content p {
+    line-height: 1.6;
+    margin-bottom: 10px;
 }
 
 /* COMMENT ACTIONS */
 
-.comment-actions{
-    display:flex;
-    gap:15px;
-    align-items:center;
-    margin-top:5px;
+.comment-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 5px;
 }
 
-.comment-actions form{
-    margin:0;
+.comment-actions form {
+    margin: 0;
 }
 
-.text-btn{
-    background:none;
-    border:none;
-    color:#666;
-    cursor:pointer;
-    font-size:14px;
-    transition:0.3s;
+.text-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
 }
 
-.text-btn:hover{
-    color:black;
+.text-btn:hover {
+    color: black;
 }
 
-.delete-text{
-    color:red;
+.delete-text {
+    color: red;
 }
 
 /* EDIT FORM */
 
-.edit-form{
-    display:none;
-    margin-top:15px;
+.edit-form {
+    display: none;
+    margin-top: 15px;
 }
 
 .edit-form input,
-.edit-form textarea{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:10px;
-    margin-bottom:10px;
-    outline:none;
+.edit-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    outline: none;
 }
 
-.edit-form textarea{
-    resize:none;
-    height:80px;
+.edit-form textarea {
+    resize: none;
+    height: 80px;
 }
 
-.save-btn{
-    padding:10px 20px;
-    border:none;
-    border-radius:25px;
-    background:#111;
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
+.save-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background: #111;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.save-btn:hover{
-    background:#333;
+.save-btn:hover {
+    background: #333;
 }
 
 /* TEAM SECTION */
 
-.team-section{
-    padding:100px 20px;
-    text-align:center;
+.team-section {
+    padding: 100px 20px;
+    text-align: center;
 }
 
-.team-section h2{
-    font-size:40px;
-    margin-bottom:60px;
+.team-section h2 {
+    font-size: 40px;
+    margin-bottom: 60px;
 }
 
-.team-container{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    flex-wrap:wrap;
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
 }
 
-.team-card{
-    background:#222;
-    color:white;
-    width:280px;
-    padding:30px 20px;
-    border-radius:25px;
-    transition:0.3s;
-    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+.team-card {
+    background: #222;
+    color: white;
+    width: 280px;
+    padding: 30px 20px;
+    border-radius: 25px;
+    transition: 0.3s;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
-.team-card:hover{
-    transform:translateY(-10px);
+.team-card:hover {
+    transform: translateY(-10px);
 }
 
-.team-card img{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    object-fit:cover;
+.team-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
     display: block;
     margin: 0 auto;
 }
 
-.team-card h3{
-    margin-top:20px;
-    margin-bottom:10px;
-    font-size:24px;
+.team-card h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 24px;
 }
 
-.team-card p{
-    color:#ccc;
-    margin-bottom:20px;
+.team-card p {
+    color: #ccc;
+    margin-bottom: 20px;
 }
 
 /* SOCIAL ICONS */
 
-.socials{
-    display:flex;
-    justify-content:center;
-    gap:15px;
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
-.socials a{
-    width:45px;
-    height:45px;
-    background:white;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    transition:0.3s;
+.socials a {
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
 }
 
-.socials a:hover{
-    transform:scale(1.1);
+.socials a:hover {
+    transform: scale(1.1);
 }
 
-.socials img{
-    width:22px;
-    height:22px;
+.socials img {
+    width: 22px;
+    height: 22px;
 }
 
 /* COMMENT WRAPPER */
 
-.comment-wrapper{
-    width:100%;
-    max-width:1000px;
-    background:white;
-    padding:50px;
-    border-radius:25px;
-    box-shadow:0 5px 25px rgba(0,0,0,0.1);
+.comment-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    background: white;
+    padding: 50px;
+    border-radius: 25px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
 }
 
-.comment-wrapper h2{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:35px;
+.comment-wrapper h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 35px;
 }
 
 /* RESPONSIVE */
 
-@media(max-width:768px){
+@media(max-width:768px) {
 
-    .hero h1{
-        font-size:40px;
+    .hero h1 {
+        font-size: 40px;
     }
 
     .advantages h2,
     .comment-section h2,
-    .team-section h2{
-        font-size:28px;
+    .team-section h2 {
+        font-size: 28px;
     }
 
-    .youtube-comment{
-        flex-direction:column;
+    .youtube-comment {
+        flex-direction: column;
     }
 
-    .profile-circle{
-        width:50px;
+    .profile-circle {
+        width: 50px;
     }
 }

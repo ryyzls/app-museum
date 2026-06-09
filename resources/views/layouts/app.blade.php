@@ -26,6 +26,7 @@
             font-family: 'Cormorant Garamond', serif;
         }
     </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body class="bg-[#f8f6f2] text-black">

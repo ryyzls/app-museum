@@ -4,21 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
+    <title>@yield('title', 'Admin Panel')</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Google Fonts -->
+    {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=DM+Sans:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+
+    {{-- SweetAlert2 CDN --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         :root {
             --cream-bg: #f7f4ef;
-            --cream-light: #faf8f5;
             --warm-white: #ffffff;
             --charcoal: #2a2826;
             --charcoal-light: #3d3a37;
@@ -26,376 +28,448 @@
             --gold-dark: #a88a5a;
             --border-subtle: #e8e4dc;
             --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.04);
-            --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.08);
         }
 
-        * {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream-bg);
+            color: var(--charcoal);
         }
 
         .museum-title {
-            font-family: 'Crimson Pro', Georgia, serif;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
+            font-family: 'Crimson Pro', serif;
+            letter-spacing: -0.03em;
+            line-height: 1;
         }
 
-        /* Smooth transitions */
-        * {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
+            height: 6px;
         }
 
         ::-webkit-scrollbar-track {
-            background: var(--cream-bg);
+            background: transparent;
         }
 
         ::-webkit-scrollbar-thumb {
             background: var(--gold);
-            border-radius: 3px;
+            border-radius: 999px;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--gold-dark);
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
         }
 
-        /* Sidebar animations */
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
         .nav-item {
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            transform: translateX(4px);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-light) 100%);
+            color: white;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-item.active .badge {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
         }
 
         .nav-item::before {
             content: '';
             position: absolute;
-            left: 0;
             top: 0;
+            left: 0;
+            width: 4px;
             height: 100%;
-            width: 3px;
             background: var(--gold);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
+            transform: scaleY(0);
+            transition: 0.3s ease;
         }
 
-        .nav-item:hover::before,
         .nav-item.active::before {
-            transform: translateX(0);
+            transform: scaleY(1);
         }
 
-        .nav-item .icon {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .admin-card {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            transition: all 0.35s ease;
         }
 
-        .nav-item:hover .icon {
-            transform: translateX(4px);
-        }
-
-        /* Profile card hover effect */
-        .profile-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .profile-card:hover {
-            transform: translateY(-2px);
+        .admin-card:hover {
+            transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
         }
 
-        /* Floating animation for logo */
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-4px);
-            }
+        .primary-button {
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-light) 100%);
+            color: white;
+            transition: 0.3s ease;
         }
 
-        .logo-float {
-            animation: float 3s ease-in-out infinite;
+        .primary-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
-        /* Badge pulse */
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.6;
-            }
+        .table-row {
+            transition: 0.25s ease;
         }
 
-        .badge-pulse {
-            animation: pulse 2s ease-in-out infinite;
+        .table-row:hover {
+            background: rgba(0, 0, 0, 0.025);
         }
 
-        /* Gradient text */
-        .gradient-text {
-            background: linear-gradient(135deg, var(--charcoal) 0%, var(--gold-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .status-badge {
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
         }
 
-        /* Backdrop blur support */
-        @supports (backdrop-filter: blur(20px)) {
-            .blur-bg {
-                backdrop-filter: blur(20px) saturate(180%);
-            }
+        .status-active {
+            background: rgba(34, 197, 94, 0.1);
+            color: rgb(22 163 74);
+        }
+
+        .status-upcoming {
+            background: rgba(234, 179, 8, 0.12);
+            color: rgb(202 138 4);
+        }
+
+        .status-closed {
+            background: rgba(239, 68, 68, 0.1);
+            color: rgb(220 38 38);
+        }
+
+        .admin-input {
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 16px 22px;
+            background: rgba(255, 255, 255, 0.7);
+            transition: 0.3s ease;
+        }
+
+        .admin-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(201, 169, 110, 0.12);
+        }
+
+        .empty-state {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .empty-state h3 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .empty-state p {
+            color: #6b7280;
         }
     </style>
 </head>
 
-<body style="background-color: var(--cream-bg); color: var(--charcoal);">
-
+<body class="overflow-x-hidden">
     <div class="flex min-h-screen">
 
-        {{-- Enhanced Sidebar --}}
-        <aside class="w-[300px] border-r blur-bg" style="border-color: var(--border-subtle); 
-                      background: linear-gradient(180deg, 
-                                  rgba(255,255,255,0.95) 0%, 
-                                  rgba(255,255,255,0.92) 100%); 
-                      box-shadow: var(--shadow-soft);">
+        {{-- SIDEBAR --}}
+        <aside class="w-[300px] border-r glass sticky top-0 h-screen hidden lg:flex flex-col"
+            style="border-color: var(--border-subtle);">
 
-            <div class="flex flex-col h-full">
-
-                {{-- Logo Section --}}
-                <div class="px-8 py-10 border-b" style="border-color: var(--border-subtle);">
-                    <div class="logo-float inline-block">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="4" y="4" width="32" height="32" rx="6" fill="var(--charcoal)" opacity="0.05" />
-                            <path d="M12 20L20 12L28 20L20 28L12 20Z" fill="var(--gold)" />
-                            <circle cx="20" cy="20" r="3" fill="var(--charcoal)" />
-                        </svg>
-                    </div>
-
-                    <div class="mt-6">
-                        <p class="uppercase tracking-[0.25em] text-[10px] font-semibold mb-2"
-                            style="color: var(--gold-dark);">
-                            ALPHASEUM
-                        </p>
-                        <h1 class="museum-title text-5xl font-light gradient-text">
-                            Admin
-                        </h1>
+            {{-- LOGO --}}
+            <div class="px-8 py-10 border-b" style="border-color: var(--border-subtle);">
+                <div class="mb-6">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center"
+                        style="background: rgba(201,169,110,0.12);">
+                        ✦
                     </div>
                 </div>
+                <p class="uppercase tracking-[0.3em] text-[11px] mb-2" style="color: var(--gold-dark);">
+                    ALPHASEUM
+                </p>
+                <h1 class="museum-title text-6xl font-light"> Admin </h1>
+            </div>
 
-                {{-- Navigation --}}
-                <nav class="flex-1 px-6 py-8 space-y-2">
+            {{-- NAVIGATION --}}
+            <nav class="flex-1 px-6 py-8 space-y-3 overflow-y-auto hide-scrollbar">
 
-                    <a href="{{ route('admin.dashboard') }}" class="nav-item flex items-center gap-4 px-5 py-4 rounded-xl group
-                              {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" style="background: {{ request()->routeIs('admin.dashboard')
-    ? 'linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-light) 100%)'
-    : 'transparent' }};
-                              color: {{ request()->routeIs('admin.dashboard')
-    ? 'var(--warm-white)'
-    : 'var(--charcoal)' }};">
+                {{-- DASHBOARD --}}
+                <a href="{{ route('admin.dashboard') }}"
+                    class="nav-item flex items-center gap-4 px-5 py-4 rounded-2xl {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                    <span class="text-xl">◫</span> <span class="font-medium"> Dashboard </span>
+                </a>
 
-                        <svg class="icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <rect x="3" y="3" width="7" height="7" rx="1" />
-                            <rect x="14" y="3" width="7" height="7" rx="1" />
-                            <rect x="14" y="14" width="7" height="7" rx="1" />
-                            <rect x="3" y="14" width="7" height="7" rx="1" />
+                {{-- ARTWORKS --}}
+                <a href="{{ route('admin.artworks.index') }}"
+                    class="nav-item flex items-center gap-4 px-5 py-4 rounded-2xl {{ request()->routeIs('admin.artworks.*') ? 'active' : '' }}">
+                    <span class="text-xl">▣</span> <span class="font-medium"> Artworks </span>
+                    <span class="badge ml-auto px-3 py-1 rounded-full text-xs font-semibold"
+                        style="background: rgba(201,169,110,0.18); color: var(--gold-dark);">
+                        {{ \App\Models\Artwork::count() }}
+                    </span>
+                </a>
+
+                {{-- ARTISTS --}}
+                <a href="{{ route('admin.artists.index') }}"
+                    class="nav-item flex items-center gap-4 px-5 py-4 rounded-2xl {{ request()->routeIs('admin.artists.*') ? 'active' : '' }}">
+
+                    <span class="text-xl">◈</span>
+
+                    <span class="font-medium">
+                        Artists
+                    </span>
+
+                    <span class="badge ml-auto px-3 py-1 rounded-full text-xs font-semibold"
+                        style="background: rgba(201,169,110,0.18); color: var(--gold-dark);">
+
+                        {{ \App\Models\Artist::count() }}
+
+                    </span>
+
+                </a>
+
+                {{-- EXHIBITIONS --}}
+                <a href="{{ route('admin.exhibitions.index') }}"
+                    class="nav-item flex items-center gap-4 px-5 py-4 rounded-2xl {{ request()->routeIs('admin.exhibitions.*') ? 'active' : '' }}">
+                    <span class="text-xl">◩</span> <span class="font-medium"> Exhibitions </span>
+                    <span class="badge ml-auto px-3 py-1 rounded-full text-xs font-semibold"
+                        style="background: rgba(201,169,110,0.18); color: var(--gold-dark);">
+                        {{ \App\Models\Exhibition::count() }}
+                    </span>
+                </a>
+
+                {{-- TICKETS --}}
+                <a href="{{ route('admin.tickets.index') }}"
+                    class="nav-item flex items-center gap-4 px-5 py-4 rounded-2xl {{ request()->routeIs('admin.tickets.*') ? 'active' : '' }}">
+                    <span class="text-xl">◌</span> <span class="font-medium"> Tickets </span>
+                    <span class="badge ml-auto px-3 py-1 rounded-full text-xs font-semibold"
+                        style="background: rgba(201,169,110,0.18); color: var(--gold-dark);">
+                        {{ \App\Models\Ticket::count() }}
+                    </span>
+                </a>
+
+
+                {{-- user --}}
+                <a href="{{ route('admin.users.index') }}"
+                    class="nav-item flex items-center gap-4 px-5 py-4 rounded-2xl {{ request()->routeIs('admin.index.*') ? 'active' : '' }}">
+                    <span class="text-xl">◌</span> <span class="font-medium"> User </span>
+                    <span class="badge ml-auto px-3 py-1 rounded-full text-xs font-semibold"
+                        style="background: rgba(201,169,110,0.18); color: var(--gold-dark);">
+                        {{ \App\Models\User::count() }}
+                    </span>
+                </a>
+
+
+                <div class="my-6 border-t" style="border-color: var(--border-subtle);"></div>
+
+                {{-- TRANSACTIONS-LOG --}}
+                <a href="{{ route('admin.transaction-logs.index') }}"
+                    class="nav-item flex items-center gap-4 px-5 py-4 rounded-2xl {{ request()->routeIs('admin.transaction-logs.*') ? 'active' : '' }}">
+
+                    <span class="text-xl">⌘</span>
+
+                    <span class="font-medium">
+                        Transaction Logs
+                    </span>
+
+                </a>
+
+                <a href="{{ route('admin.revenue-report.index') }}"
+                    class="nav-item flex items-center gap-4 px-5 py-4 rounded-2xl {{ request()->routeIs('admin.revenue-report.*') ? 'active' : '' }}">
+
+                    <span class="text-xl">◔</span>
+
+                    <span class="font-medium">
+                        Revenue Report
+                    </span>
+
+                </a>
+
+                {{-- LOGOUT --}}
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit"
+                        class="nav-item w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-red-500 hover:bg-red-50 transition duration-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>
+                        <span class="font-medium">Logout</span>
+                    </button>
+                </form>
+            </nav>
 
-                        <span class="font-medium">Dashboard</span>
-
-                        @if(request()->routeIs('admin.dashboard'))
-                            <span class="ml-auto badge-pulse w-2 h-2 rounded-full" style="background: var(--gold);"></span>
-                        @endif
-                    </a>
-
-                    <a href="{{ route('admin.artworks.index') }}"
-                        class="nav-item flex items-center gap-4 px-5 py-4 rounded-xl group"
-                        style="color: var(--charcoal);">
-
-                        <svg class="icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                            <path d="M3 9h18M9 21V9" />
-                        </svg>
-
-                        <span class="font-medium">Artworks</span>
-
-                        <span class="ml-auto text-xs font-semibold px-2 py-0.5 rounded-full"
-                            style="background: var(--gold); color: var(--warm-white);">
-                            
-                            {{ \App\Models\Artwork::count() }}
-                           
-
-                        </span>
-                    </a>
-
-                    <a href="#" class="nav-item flex items-center gap-4 px-5 py-4 rounded-xl group"
-                        style="color: var(--charcoal);">
-
-                        <svg class="icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
-                            <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
-                            <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
-                        </svg>
-
-                        <span class="font-medium">Exhibitions</span>
-                    </a>
-
-                    <a href="#" class="nav-item flex items-center gap-4 px-5 py-4 rounded-xl group"
-                        style="color: var(--charcoal);">
-
-                        <svg class="icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path
-                                d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
-                            <path d="m9 12 2 2 4-4" />
-                        </svg>
-
-                        <span class="font-medium">Tickets</span>
-                    </a>
-
-                    {{-- Divider --}}
-                    <div class="py-4">
-                        <div class="h-px" style="background: var(--border-subtle);"></div>
-                    </div>
-
-                    <a href="#" class="nav-item flex items-center gap-4 px-5 py-4 rounded-xl group"
-                        style="color: var(--charcoal);">
-
-                        <svg class="icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <circle cx="12" cy="12" r="3" />
-                            <path
-                                d="M12 1v6m0 6v6m9-9h-6m-6 0H3m15.364 6.364l-4.243-4.243m-6.364 0L3.636 18.364m12.728 0l-4.243-4.243m-6.364 0L3.636 5.636" />
-                        </svg>
-
-                        <span class="font-medium">Settings</span>
-                    </a>
-
-                </nav>
-
-                {{-- User Profile Card --}}
-                <div class="px-6 pb-8">
-                    <div class="profile-card p-4 rounded-2xl" style="background: linear-gradient(135deg, 
-                                            rgba(201, 169, 110, 0.1) 0%, 
-                                            rgba(168, 138, 90, 0.05) 100%);
-                                border: 1px solid var(--border-subtle);">
-
-                        <div class="flex items-center gap-3">
-                            {{-- Avatar --}}
-                            <div class="relative">
-                                <div class="w-12 h-12 rounded-xl overflow-hidden"
-                                    style="background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);">
-                                    <div
-                                        class="w-full h-full flex items-center justify-center text-white font-semibold text-lg">
-                                        A
-                                    </div>
-                                </div>
-                                <div class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2"
-                                    style="background: #10b981; border-color: var(--warm-white);"></div>
-                            </div>
-
-                            {{-- User Info --}}
-                            <div class="flex-1 min-w-0">
-                                <p class="font-semibold text-sm truncate" style="color: var(--charcoal);">
-                                    Admin User
-                                </p>
-                                <p class="text-xs truncate" style="color: var(--charcoal); opacity: 0.6;">
-                                    admin@alphaseum.com
-                                </p>
-                            </div>
-
-                            {{-- Logout Button --}}
-                            <button class="p-2 rounded-lg hover:bg-white/50" style="color: var(--charcoal);">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                                    <polyline points="16 17 21 12 16 7" />
-                                    <line x1="21" y1="12" x2="9" y2="12" />
-                                </svg>
-                            </button>
+            {{-- PROFILE --}}
+            <div class="p-4">
+                <div class="admin-card p-4 rounded-[28px]">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-semibold"
+                            style="background: linear-gradient(135deg, var(--gold), var(--gold-dark));">
+                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                        </div>
+                        <div>
+                            <p class="font-semibold">{{ auth()->user()->name }}</p>
+                            <p class="text-sm text-gray-500">{{ auth()->user()->email }}</p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </aside>
 
-        {{-- Main Content Area --}}
-        <main class="flex-1 overflow-auto">
+        {{-- MAIN --}}
+        <main class="flex-1 min-w-0">
 
-            {{-- Top Bar --}}
-            <header class="sticky top-0 z-10 px-10 py-6 border-b blur-bg" style="background: rgba(247, 244, 239, 0.9); 
-                           border-color: var(--border-subtle);">
+            {{-- TOPBAR --}}
+            <header class="sticky top-0 z-20 glass border-b" style="border-color: var(--border-subtle);">
+                <div class="px-10 py-6 flex items-center justify-between">
 
-                <div class="flex items-center justify-between">
-
-                    {{-- Breadcrumb / Title --}}
+                    {{-- TITLE --}}
                     <div>
-                        <div class="flex items-center gap-2 text-sm mb-1" style="color: var(--charcoal); opacity: 0.6;">
-                            <span>Admin</span>
-                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="9 18 15 12 9 6" />
-                            </svg>
-                            <span>@yield('breadcrumb', 'Dashboard')</span>
+                        <div class="flex items-center gap-2 text-sm text-gray-400 mb-1">
+                            <span> Admin </span> <span> › </span> <span> @yield('breadcrumb', 'Dashboard') </span>
                         </div>
-                        <h2 class="museum-title text-3xl font-light" style="color: var(--charcoal);">
-                            @yield('page-title', 'Dashboard')
-                        </h2>
+                        <h2 class="museum-title text-4xl font-light"> @yield('page-title', 'Dashboard') </h2>
                     </div>
 
-                    {{-- Quick Actions --}}
-                    <div class="flex items-center gap-3">
+                    {{-- ACTIONS --}}
+                    <div class="flex items-center gap-4">
 
-                        {{-- Search --}}
-                        <button class="p-3 rounded-xl hover:bg-white/80"
-                            style="background: rgba(255,255,255,0.5); color: var(--charcoal);">
-                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="11" cy="11" r="8" />
-                                <path d="m21 21-4.35-4.35" />
-                            </svg>
+                        {{-- SEARCH --}}
+                        <form action="{{ route('admin.exhibitions.index') }}" method="GET"
+                            class="flex items-center gap-3">
+
+                            <input type="text" name="search" placeholder="Search exhibitions..."
+                                class="admin-input w-[240px] h-14 rounded-2xl hidden lg:block">
+
+                            <button type="submit"
+                                class="w-14 h-14 rounded-2xl glass flex items-center justify-center hover:bg-white hover:shadow-lg transition-all duration-300 group">
+
+                                <svg class="w-5 h-5 text-gray-500 group-hover:text-[#c9a96e] transition-colors"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                                    </path>
+
+                                </svg>
+
+                            </button>
+
+                        </form>
                         </button>
 
-                        {{-- Notifications --}}
-                        <button class="relative p-3 rounded-xl hover:bg-white/80"
-                            style="background: rgba(255,255,255,0.5); color: var(--charcoal);">
-                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                            </svg>
-                            <span class="absolute top-2 right-2 w-2 h-2 rounded-full badge-pulse"
-                                style="background: #ef4444;"></span>
-                        </button>
+                        {{-- VIEW PUBLIC SITE --}}
+                        <a href="{{ route('home') }}"
+                            class="relative w-14 h-14 rounded-2xl glass flex items-center justify-center hover:bg-white hover:shadow-lg transition-all duration-300 group"
+                            title="View Public Site">
 
-                        {{-- Add New --}}
-                        <button class="px-5 py-3 rounded-xl font-medium flex items-center gap-2 hover:shadow-lg" style="background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-light) 100%); 
-                                       color: var(--warm-white);">
-                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="12" y1="5" x2="12" y2="19" />
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                            </svg>
-                            <span>Add New</span>
-                        </button>
+                            <span class="text-xl text-gray-500 group-hover:text-[#c9a96e] transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-buildings" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022M6 8.694 1 10.36V15h5zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5z" />
+                                    <path
+                                        d="M2 11h1v1H2zm2 0h1v1H4zm-2 2h1v1H2zm2 0h1v1H4zm4-4h1v1H8zm2 0h1v1h-1zm-2 2h1v1H8zm2 0h1v1h-1zm2-2h1v1h-1zm0 2h1v1h-1zM8 7h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zM8 5h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zm0-2h1v1h-1z" />
+                                </svg>
+                            </span>
+
+                        </a>
+
+                        {{-- LOGOUT BUTTON DI TOPBAR --}}
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit"
+                                class="w-14 h-14 rounded-2xl glass flex items-center justify-center hover:bg-red-50 hover:shadow-lg transition-all duration-300 group"
+                                title="Logout">
+                                <svg class="w-5 h-5 text-gray-500 group-hover:text-red-500 transition-colors"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                </svg>
+                            </button>
+                        </form>
+
                     </div>
                 </div>
             </header>
 
-            {{-- Page Content --}}
+            {{-- CONTENT --}}
             <div class="p-10">
                 @yield('content')
             </div>
-
         </main>
-
     </div>
 
+    {{-- Package RealRashid SweetAlert untuk Flash Messages --}}
+    @include('sweetalert::alert')
+
+    {{-- GLOBAL DELETE CONFIRMATION SCRIPT --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteForms = document.querySelectorAll('.delete-form');
+
+            deleteForms.forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this data!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#dc2626',
+                        cancelButtonColor: '#6b7280',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    title: 'Success!',
+                    text: "{!! session('success') !!}",
+                    icon: 'success',
+                    confirmButtonColor: '#2a2826',
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+            });
+        </script>
+    @endif
 </body>
 
 </html>

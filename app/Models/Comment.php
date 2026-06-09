@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     protected $fillable = [
-        'name',
-        'message'
-    ];
+    'user_id',
+    'name',
+    'message',
+];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

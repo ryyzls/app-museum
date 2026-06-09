@@ -14,24 +14,30 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
-        $totalArtworks = Artwork::count();
+        $totalArtworks = \App\Models\Artwork::count();
+        $totalArtists = \App\Models\Artist::count();
+        $totalExhibitions = \App\Models\Exhibition::count();
+        $totalTickets = \App\Models\Ticket::count();
+        $totalTransactions = \App\Models\Transaction::count();
 
-        $totalArtists = Artist::count();
-
-        $totalExhibitions = Exhibition::count();
-
-        $totalTickets = Ticket::count();
-
-        $totalTransactions = Transaction::count();
+        // MENGAMBIL DATA DARI SQL VIEW UNTUK GRAFIK
+        $chartData = \Illuminate\Support\Facades\DB::table('vw_exhibition_performance')->get();
+        $recentTransactions = Transaction::with([
+            'user',
+            'ticket.exhibition'
+        ])
+            ->latest()
+            ->take(5)
+            ->get();
 
         return view('admin.dashboard', compact(
-
             'totalArtworks',
             'totalArtists',
             'totalExhibitions',
             'totalTickets',
-            'totalTransactions'
-
+            'totalTransactions',
+            'chartData',
+            'recentTransactions'
         ));
     }
 }

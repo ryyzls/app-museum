@@ -1,202 +1,148 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Create Artwork')
 
+@section('page-title', 'Create Artwork')
+
+@section('breadcrumb', 'Artworks / Create')
+
 @section('content')
 
-<section class="min-h-screen pt-40 pb-24 px-8">
+    <div class="max-w-4xl">
 
-    <div class="max-w-4xl mx-auto">
+        <div class="bg-white rounded-[32px] border border-gray-100 p-12">
 
-        {{-- Heading --}}
-        <div class="mb-16">
+            <form action="{{ route('admin.artworks.store') }}" method="POST" enctype="multipart/form-data"
+                class="space-y-10">
 
-            <p class="uppercase tracking-[0.3em] text-sm text-gray-500 mb-4">
-                Artwork Management
-            </p>
+                @csrf
 
-            <h1 class="museum-title text-6xl font-light">
-                Create Artwork
-            </h1>
+                {{-- Title --}}
+                <div>
 
-        </div>
+                    <label class="block text-sm mb-3">
 
-        {{-- Validation Errors --}}
-        @if ($errors->any())
+                        Artwork Title
 
-            <div class="mb-10 bg-red-100 border border-red-300 text-red-700 px-6 py-4">
+                    </label>
 
-                <ul class="space-y-2">
+                    <input type="text" name="title" class="w-full rounded-2xl border border-gray-200 px-6 py-4">
 
-                    @foreach ($errors->all() as $error)
+                </div>
 
-                        <li>{{ $error }}</li>
+                {{-- Artist --}}
+                <div>
 
-                    @endforeach
+                    <label class="block text-sm mb-3">
 
-                </ul>
+                        Artist
 
-            </div>
+                    </label>
 
-        @endif
+                    <select name="artist_id" class="w-full rounded-2xl border border-gray-200 px-6 py-4">
 
-        {{-- Form --}}
-        <form action="{{ route('artworks.store') }}"
-              method="POST"
-              class="space-y-10">
+                        @foreach ($artists as $artist)
 
-            @csrf
+                            <option value="{{ $artist->id }}">
 
-            {{-- Title --}}
-            <div>
+                                {{ $artist->name }}
 
-                <label class="block uppercase tracking-[0.2em] text-sm mb-4">
-                    Title
-                </label>
+                            </option>
 
-                <input
-                    type="text"
-                    name="title"
-                    value="{{ old('title') }}"
-                    class="w-full border border-gray-300 bg-white px-6 py-4 focus:outline-none focus:border-black"
-                >
+                        @endforeach
 
-            </div>
+                    </select>
 
-            {{-- Description --}}
-            <div>
+                </div>
 
-                <label class="block uppercase tracking-[0.2em] text-sm mb-4">
-                    Description
-                </label>
+                {{-- Category --}}
+                <div>
 
-                <textarea
-                    name="description"
-                    rows="6"
-                    class="w-full border border-gray-300 bg-white px-6 py-4 focus:outline-none focus:border-black"
-                >{{ old('description') }}</textarea>
+                    <label class="block text-sm mb-3">
 
-            </div>
+                        Category
 
-            {{-- Image --}}
-            <div>
+                    </label>
 
-                <label class="block uppercase tracking-[0.2em] text-sm mb-4">
-                    Image Path
-                </label>
+                    <select name="category_id" class="w-full rounded-2xl border border-gray-200 px-6 py-4">
 
-                <input
-                    type="text"
-                    name="image"
-                    placeholder="/images/artworks/example.jpg"
-                    value="{{ old('image') }}"
-                    class="w-full border border-gray-300 bg-white px-6 py-4 focus:outline-none focus:border-black"
-                >
+                        @foreach ($categories as $category)
 
-            </div>
+                            <option value="{{ $category->id }}">
 
-            {{-- Artist --}}
-            <div>
+                                {{ $category->name }}
 
-                <label class="block uppercase tracking-[0.2em] text-sm mb-4">
-                    Artist
-                </label>
+                            </option>
 
-                <select
-                    name="artist_id"
-                    class="w-full border border-gray-300 bg-white px-6 py-4 focus:outline-none focus:border-black"
-                >
+                        @endforeach
 
-                    <option value="">Select Artist</option>
+                    </select>
 
-                    @foreach($artists as $artist)
+                </div>
 
-                        <option value="{{ $artist->id }}">
+                {{-- Museum --}}
+                <div>
 
-                            {{ $artist->name }}
+                    <label class="block text-sm mb-3">
 
-                        </option>
+                        Museum
 
-                    @endforeach
+                    </label>
 
-                </select>
+                    <select name="museum_id" class="w-full rounded-2xl border border-gray-200 px-6 py-4">
 
-            </div>
+                        @foreach ($museums as $museum)
 
-            {{-- Category --}}
-            <div>
+                            <option value="{{ $museum->id }}">
 
-                <label class="block uppercase tracking-[0.2em] text-sm mb-4">
-                    Category
-                </label>
+                                {{ $museum->name }}
 
-                <select
-                    name="category_id"
-                    class="w-full border border-gray-300 bg-white px-6 py-4 focus:outline-none focus:border-black"
-                >
+                            </option>
 
-                    <option value="">Select Category</option>
+                        @endforeach
 
-                    @foreach($categories as $category)
+                    </select>
 
-                        <option value="{{ $category->id }}">
+                </div>
 
-                            {{ $category->name }}
+                {{-- Description --}}
+                <div>
 
-                        </option>
+                    <label class="block text-sm mb-3">
 
-                    @endforeach
+                        Description
 
-                </select>
+                    </label>
 
-            </div>
+                    <textarea name="description" rows="6"
+                        class="w-full rounded-2xl border border-gray-200 px-6 py-4"></textarea>
 
-            {{-- Museum --}}
-            <div>
+                </div>
 
-                <label class="block uppercase tracking-[0.2em] text-sm mb-4">
-                    Museum
-                </label>
+                {{-- Image --}}
+                <div>
 
-                <select
-                    name="museum_id"
-                    class="w-full border border-gray-300 bg-white px-6 py-4 focus:outline-none focus:border-black"
-                >
+                    <label class="block text-sm mb-3">
 
-                    <option value="">Select Museum</option>
+                        Artwork Image
 
-                    @foreach($museums as $museum)
+                    </label>
 
-                        <option value="{{ $museum->id }}">
+                    <input type="file" name="image" class="w-full">
 
-                            {{ $museum->name }}
+                </div>
 
-                        </option>
-
-                    @endforeach
-
-                </select>
-
-            </div>
-
-            {{-- Button --}}
-            <div class="pt-6">
-
-                <button
-                    type="submit"
-                    class="bg-black text-white px-10 py-4 uppercase tracking-[0.2em] text-sm hover:bg-gray-800 transition duration-300"
-                >
+                {{-- Submit --}}
+                <button class="px-8 py-4 bg-black text-white rounded-2xl">
 
                     Create Artwork
 
                 </button>
 
-            </div>
+            </form>
 
-        </form>
+        </div>
 
     </div>
-
-</section>
 
 @endsection
