@@ -110,11 +110,12 @@
 
                     <label class="block text-sm mb-3">
 
-                        Description
+                        Description <span class="text-red-500">*</span>
+                        <span class="text-gray-400 font-normal">(minimum 16 characters)</span>
 
                     </label>
 
-                    <textarea name="description" rows="6"
+                    <textarea name="description" rows="6" required minlength="16"
                         class="w-full rounded-2xl border border-gray-200 px-6 py-4"></textarea>
 
                 </div>
@@ -124,11 +125,11 @@
 
                     <label class="block text-sm mb-3">
 
-                        Artwork Image
+                        Artwork Image <span class="text-red-500">*</span>
 
                     </label>
 
-                    <input type="file" name="image" class="w-full">
+                    <input type="file" name="image" required class="w-full">
 
                 </div>
 

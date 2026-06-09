@@ -8,7 +8,7 @@
     <section class="relative h-screen overflow-hidden">
 
         {{-- Artwork Image --}}
-        <img src="{{ $artwork->image_url }}" onerror="this.src='{{ asset('images/artworks/fallback.jpg') }}'"
+        <img src="{{ str_starts_with($artwork->image_url, 'http') ? $artwork->image_url : asset('storage/' . $artwork->image_url) }}" onerror="this.src='{{ asset('images/artworks/fallback.jpg') }}'"
             class="absolute inset-0 w-full h-full object-cover" alt="{{ $artwork->title }}">
 
         {{-- Overlay --}}

@@ -416,7 +416,7 @@
                         <a href="{{ route('artworks.show', $artwork->id) }}"
                             class="mb-2 break-inside-avoid block w-full group relative overflow-hidden bg-neutral-900 transition duration-500">
 
-                            <img src="{{ $artwork->image_url ?? asset('images/default-artwork.jpg') }}"
+                            <img src="{{ str_starts_with($artwork->image_url ?? '', 'http') ? $artwork->image_url : ($artwork->image_url ? asset('storage/' . $artwork->image_url) : asset('images/default-artwork.jpg')) }}"
                                 alt="{{ $artwork->title }}"
                                 class="w-full h-auto object-cover display-block transition duration-700 ease-out brightness-90 group-hover:brightness-100">
 
@@ -490,7 +490,7 @@
 
                         <div class="overflow-hidden mb-6">
 
-                            <img src="{{ $artwork->image_url ?? asset('images/default-artwork.jpg') }}"
+                            <img src="{{ str_starts_with($artwork->image_url ?? '', 'http') ? $artwork->image_url : ($artwork->image_url ? asset('storage/' . $artwork->image_url) : asset('images/default-artwork.jpg')) }}"
                                 alt="{{ $artwork->title }}"
                                 class="h-[500px] w-full object-cover transition duration-700 group-hover:scale-105">
 
@@ -569,7 +569,7 @@
 
                             <div class="w-9 h-9 rounded-full bg-neutral-700 overflow-hidden">
 
-                                <img src="{{ $post->image_url ?? asset('images/default-artwork.jpg') }}"
+                                <img src="{{ str_starts_with($post->image_url ?? '', 'http') ? $post->image_url : ($post->image_url ? asset('storage/' . $post->image_url) : asset('images/default-artwork.jpg')) }}"
                                     class="w-full h-full object-cover" alt="Avatar">
 
                             </div>
@@ -590,7 +590,7 @@
 
                         <div class="w-full h-[320px] bg-neutral-900">
 
-                            <img src="{{ $post->image_url ?? asset('images/default-artwork.jpg') }}"
+                            <img src="{{ str_starts_with($post->image_url ?? '', 'http') ? $post->image_url : ($post->image_url ? asset('storage/' . $post->image_url) : asset('images/default-artwork.jpg')) }}"
                                 class="w-full h-full object-cover" alt="{{ $post->title }}">
 
                         </div>

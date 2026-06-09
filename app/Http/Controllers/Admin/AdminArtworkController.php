@@ -64,13 +64,11 @@ class AdminArtworkController extends Controller
             'artist_id' => 'required',
             'category_id' => 'required',
             'museum_id' => 'required',
-            'description' => 'nullable',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096'
+            'description' => 'required|string|min:16',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:4096'
         ]);
 
-        if ($request->hasFile('image')) {
-            $validated['image_url'] = $request->file('image')->store('artworks', 'public');
-        }
+        $validated['image_url'] = $request->file('image')->store('artworks', 'public');
 
         // GENERATE ARK ID
         $validated['ark_id'] = 'ARK-' . strtoupper(Str::random(8));

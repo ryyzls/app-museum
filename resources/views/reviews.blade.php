@@ -30,7 +30,7 @@
                             {{-- Kontainer Gambar Grid --}}
                             <div
                                 class="w-full aspect-square bg-neutral-100 overflow-hidden relative border-b border-neutral-100">
-                                <img src="{{ $artwork->image_url }}" alt="{{ $artwork->title }}"
+                                <img src="{{ str_starts_with($artwork->image_url ?? '', 'http') ? $artwork->image_url : asset('storage/' . $artwork->image_url) }}" alt="{{ $artwork->title }}"
                                     class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
                                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=800';">
                             </div>
@@ -75,7 +75,7 @@
                                 {{-- SISI KIRI: Gambar Besar --}}
                                 <div
                                     class="p-6 flex items-center justify-center bg-neutral-50 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none border-b md:border-b-0 md:border-r border-neutral-100">
-                                    <img src="{{ $artwork->image_url }}" alt="{{ $artwork->title }}"
+                                    <img src="{{ str_starts_with($artwork->image_url ?? '', 'http') ? $artwork->image_url : asset('storage/' . $artwork->image_url) }}" alt="{{ $artwork->title }}"
                                         class="max-h-[300px] md:max-h-[450px] w-auto object-contain rounded-lg shadow-md"
                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=800';">
                                 </div>
